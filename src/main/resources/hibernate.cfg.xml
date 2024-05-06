@@ -26,5 +26,6 @@
 
         <!-- Names the annotated entity class -->
         <mapping class="com.example.model.Bank"/>
+        <mapping class="com.example.model.Owner"/>
     </session-factory>
 </hibernate-configuration>

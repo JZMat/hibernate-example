@@ -4,6 +4,7 @@ package com.example.ui;
 // Import statements
 
 import com.example.service.BankService;
+import com.example.service.OwnerService;
 import com.example.util.InputUtils;
 
 import java.util.InputMismatchException;
@@ -12,12 +13,14 @@ import java.util.InputMismatchException;
 public class MainMenu extends TextMenu {
     // Instance variable for bank service
     private final BankService bankService;
+    private final OwnerService ownerService;
     private boolean exitRequested = false;
 
     // Constructor
-    public MainMenu(BankService bankService) {
+    public MainMenu(BankService bankService, OwnerService ownerService) {
 
         this.bankService = bankService;
+        this.ownerService = ownerService;
     }
 
     // Override method to display the main menu
@@ -43,7 +46,9 @@ public class MainMenu extends TextMenu {
                     bankMenu.run();
                     break;
                 case 2:
-                    //
+                    // Code to navigate to OwnerMenu
+                    OwnerMenu ownerMenu = new OwnerMenu(ownerService);
+                    ownerMenu.run();
                     break;
                 // case 3:
                 //

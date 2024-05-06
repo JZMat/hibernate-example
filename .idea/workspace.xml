@@ -4,18 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/BankRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/BankRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/BankService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/BankServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/MainMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/TextMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/util/InputUtils.java" afterDir="false" />
+    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="This version allows to &quot;Create a new bank&quot; and &quot;View all banks&quot;.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Owner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/OwnerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/OwnerRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/OwnerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/OwnerServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/OwnerMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Bank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,12 +124,21 @@
       <option name="project" value="LOCAL" />
       <updated>1714925657593</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="This version allows to &quot;Create a new bank&quot; and &quot;View all banks&quot;.">
+      <option name="closed" value="true" />
+      <created>1714990394059</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1714990394059</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="This version allows to &quot;Create a new bank&quot; and &quot;View all banks&quot;." />
+    <option name="LAST_COMMIT_MESSAGE" value="This version allows to &quot;Create a new bank&quot; and &quot;View all banks&quot;." />
   </component>
 </project>
