@@ -1,6 +1,5 @@
 package com.example.ui;
 
-import com.example.model.Bank;
 import com.example.model.Owner;
 import com.example.service.OwnerService;
 import com.example.util.InputUtils;

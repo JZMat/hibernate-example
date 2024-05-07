@@ -2,9 +2,6 @@
 package com.example.ui;
 
 // Import statements
-import com.example.service.BankService;
-import com.example.service.BankServiceImpl;
-import com.example.util.InputUtils;
 
 // Abstract text menu class
 public abstract class TextMenu {

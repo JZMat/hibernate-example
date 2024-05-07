@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="This version does not work if one try to associate a BankAccount to a user.">
+    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="This version allows you to link a bank account to a user, but it is not a smart version. It's hard to guess which account belongs to whom when people have a separate account with the same name at the same bank.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Bank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/BankAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/BankAccountRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/BankAccountRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/BankAccountRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/BankAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/BankAccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/OwnerRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/OwnerRepositoryImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/BankAccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/BankAccountServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/OwnerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/OwnerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/OwnerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/OwnerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/TextMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/TextMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/util/InputUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/util/InputUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715090309680</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="This version allows you to link a bank account to a user, but it is not a smart version. It's hard to guess which account belongs to whom when people have a separate account with the same name at the same bank.">
+      <option name="closed" value="true" />
+      <created>1715094091359</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715094091359</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -165,6 +176,7 @@
     <MESSAGE value="This version allows to &quot;Create a new bank&quot; and &quot;View all banks&quot;." />
     <MESSAGE value="This version also allows to &quot;Create a new owner&quot;." />
     <MESSAGE value="This version does not work if one try to associate a BankAccount to a user." />
-    <option name="LAST_COMMIT_MESSAGE" value="This version does not work if one try to associate a BankAccount to a user." />
+    <MESSAGE value="This version allows you to link a bank account to a user, but it is not a smart version. It's hard to guess which account belongs to whom when people have a separate account with the same name at the same bank." />
+    <option name="LAST_COMMIT_MESSAGE" value="This version allows you to link a bank account to a user, but it is not a smart version. It's hard to guess which account belongs to whom when people have a separate account with the same name at the same bank." />
   </component>
 </project>

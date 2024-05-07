@@ -27,16 +27,6 @@ public class BankAccountRepositoryImpl implements BankAccountRepository {
         }
     }
 
-
-    /*    @Override
-    public List<BankAccount> getAllBankAccounts() {
-        try (Session session = sessionFactory.openSession()) {
-            Query<BankAccount> query = session.createQuery("FROM BankAccount", BankAccount.class);
-            return query.list();
-        }
-
-    }*/
-
     @Override
     public List<BankAccount> getAllBankAccounts() {
         try (Session session = sessionFactory.openSession()) {

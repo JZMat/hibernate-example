@@ -2,7 +2,6 @@ package com.example.service;
 
 import com.example.model.BankAccount;
 import com.example.repository.BankAccountRepository;
-import com.example.repository.BankRepository;
 
 import java.util.List;
 

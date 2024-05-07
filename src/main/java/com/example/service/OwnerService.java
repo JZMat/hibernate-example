@@ -1,6 +1,5 @@
 package com.example.service;
 
-import com.example.model.Bank;
 import com.example.model.Owner;
 
 import java.util.List;

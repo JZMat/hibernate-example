@@ -1,6 +1,5 @@
 package com.example.repository;
 
-import com.example.model.Bank;
 import com.example.model.Owner;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

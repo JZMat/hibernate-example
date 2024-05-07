@@ -30,7 +30,8 @@ public class BankAccountMenu extends TextMenu {
         printOption("1", "Create a new bank account");
         printOption("2", "View all bank accounts");
         printOption("3", "Assign an owner to a bank account");
-        printOption("4", "Go back to main menu");
+        printOption("4", "Deposit funds into an account");
+        printOption("5", "Go back to main menu");
     }
 
     @Override
@@ -49,6 +50,9 @@ public class BankAccountMenu extends TextMenu {
                     assignOwnerToBankAccount();
                     break;
                 case 4:
+                    depositFunds();
+                    break;
+                case 5:
                     System.out.println("Returning to main menu...");
                     returnToMainMenu = true;
                     break;
@@ -59,6 +63,28 @@ public class BankAccountMenu extends TextMenu {
         } catch (InputMismatchException e) {
             System.out.println("Invalid input type. Please enter a number.");
         }
+    }
+
+    private void depositFunds() {
+        List<BankAccount> bankAccounts = bankAccountService.getAllBankAccounts();
+        if (bankAccounts.isEmpty()) {
+            System.out.println("No bank accounts found. Please create a bank account first.");
+            return;
+        }
+
+        System.out.println("List of all bank accounts:");
+        for (int i = 0; i < bankAccounts.size(); i++) {
+            System.out.println((i + 1) + ". " + bankAccounts.get(i).getAccount_name());
+        }
+
+        int accountChoice = InputUtils.getIntInput("Choose a bank account by entering its number: ");
+        BankAccount chosenAccount = bankAccounts.get(accountChoice - 1);
+
+        BigDecimal amount = InputUtils.getBigDecimalInput("Enter the amount to deposit: ");
+        chosenAccount.setBalance(chosenAccount.getBalance().add(amount));
+
+        bankAccountService.updateBankAccount(chosenAccount);
+        System.out.println("Funds deposited successfully. New balance: " + chosenAccount.getBalance());
     }
 
     private void createNewBankAccount() {
@@ -125,7 +151,7 @@ public class BankAccountMenu extends TextMenu {
         BankAccount chosenAccount = bankAccounts.get(accountChoice - 1);
 
         // Access the owners set to initialize it while the session is still open
-        chosenAccount.getOwners().size();
+        int ownerSetSize = chosenAccount.getOwners().size();
 
         chosenAccount.addOwner(chosenOwner);
         bankAccountService.updateBankAccount(chosenAccount);
