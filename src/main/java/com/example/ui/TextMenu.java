@@ -16,6 +16,7 @@ public abstract class TextMenu {
 
     // Protected method to print menu options
     protected void printOption(String option, String description) {
+
         System.out.println(option + ". " + description);
     }
 }

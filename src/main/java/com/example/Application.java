@@ -1,13 +1,7 @@
 package com.example;
 
-import com.example.repository.BankRepository;
-import com.example.repository.BankRepositoryImpl;
-import com.example.repository.OwnerRepository;
-import com.example.repository.OwnerRepositoryImpl;
-import com.example.service.BankService;
-import com.example.service.BankServiceImpl;
-import com.example.service.OwnerService;
-import com.example.service.OwnerServiceImpl;
+import com.example.repository.*;
+import com.example.service.*;
 import com.example.ui.MainMenu;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -29,8 +23,13 @@ public class Application {
         // Create OwnerService instance
         OwnerService ownerService = new OwnerServiceImpl(ownerRepository);
 
+        // Create BankAccountRepository instance
+        BankAccountRepository bankAccountRepository = new BankAccountRepositoryImpl(sessionFactory);
+        //Create BankAccountService instance
+        BankAccountService bankAccountService = new BankAccountServiceImpl(bankAccountRepository);
+
         // Create and run the main menu with the BankService instance and OwnerService instance
-        MainMenu mainMenu = new MainMenu(bankService, ownerService);
+        MainMenu mainMenu = new MainMenu(bankService, ownerService, bankAccountService);
         mainMenu.run();
     }
 }

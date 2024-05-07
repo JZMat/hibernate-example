@@ -3,6 +3,7 @@ package com.example.ui;
 
 // Import statements
 
+import com.example.service.BankAccountService;
 import com.example.service.BankService;
 import com.example.service.OwnerService;
 import com.example.util.InputUtils;
@@ -14,13 +15,15 @@ public class MainMenu extends TextMenu {
     // Instance variable for bank service
     private final BankService bankService;
     private final OwnerService ownerService;
+    private final BankAccountService bankAccountService;
     private boolean exitRequested = false;
 
     // Constructor
-    public MainMenu(BankService bankService, OwnerService ownerService) {
+    public MainMenu(BankService bankService, OwnerService ownerService, BankAccountService bankAccountService) {
 
         this.bankService = bankService;
         this.ownerService = ownerService;
+        this.bankAccountService = bankAccountService;
     }
 
     // Override method to display the main menu
@@ -50,9 +53,11 @@ public class MainMenu extends TextMenu {
                     OwnerMenu ownerMenu = new OwnerMenu(ownerService);
                     ownerMenu.run();
                     break;
-                // case 3:
-                //
-                //break;
+                case 3:
+                    // Code to navigate to BankAccountMenu
+                    BankAccountMenu bankAccountMenu = new BankAccountMenu(bankAccountService, ownerService, bankService);
+                    bankAccountMenu.run();
+                    break;
                 // case 4:
                 //
                 //break;

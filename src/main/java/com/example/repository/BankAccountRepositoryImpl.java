@@ -1,37 +1,40 @@
 package com.example.repository;
 
 import com.example.model.Bank;
-import com.example.model.Owner;
+import com.example.model.BankAccount;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class OwnerRepositoryImpl implements OwnerRepository {
+public class BankAccountRepositoryImpl implements BankAccountRepository {
 
 
     private final SessionFactory sessionFactory;
 
-    public OwnerRepositoryImpl(SessionFactory sessionFactory) {
+    public BankAccountRepositoryImpl(SessionFactory sessionFactory) {
 
         this.sessionFactory = sessionFactory;
     }
 
+
     @Override
-    public void saveOwner(Owner owner) {
+    public void saveBankAccount(BankAccount bankAccount) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.persist(owner);
+            session.persist(bankAccount);
             session.getTransaction().commit();
         }
     }
 
     @Override
-    public List<Owner> getAllOwners() {
+    public List<BankAccount> getAllBankAccounts() {
         try (Session session = sessionFactory.openSession()) {
-            Query<Owner> query = session.createQuery("FROM Owner", Owner.class);
+            Query<BankAccount> query = session.createQuery("FROM BankAccount", BankAccount.class);
             return query.list();
         }
+
     }
+
 }

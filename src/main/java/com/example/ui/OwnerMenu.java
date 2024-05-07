@@ -1,12 +1,14 @@
 package com.example.ui;
 
+import com.example.model.Bank;
 import com.example.model.Owner;
 import com.example.service.OwnerService;
 import com.example.util.InputUtils;
 
 import java.util.InputMismatchException;
+import java.util.List;
 
-public class OwnerMenu extends TextMenu{
+public class OwnerMenu extends TextMenu {
     // Instance variable for owner service
     private final OwnerService ownerService;
     private boolean returnToMainMenu = false;
@@ -36,7 +38,7 @@ public class OwnerMenu extends TextMenu{
                     createNewOwner();
                     break;
                 case 2:
-                    // viewAllOwners();
+                    viewAllOwners();
                     break;
                 case 3:
                     // updateOwnerDetails();
@@ -64,6 +66,19 @@ public class OwnerMenu extends TextMenu{
         System.out.println("Owner '" + ownerName + "' created successfully!");
     }
 
+    // Method to view all owners
+    private void viewAllOwners() {
+        List<Owner> owners = ownerService.getAllOwners();
+        if (owners.isEmpty()) {
+            System.out.println("No owners found.");
+        } else {
+            System.out.println("List of all owners:");
+            for (Owner owner : owners) {
+                System.out.println(owner.getOwner_name());
+            }
+        }
+    }
+
     public void run() {
         while (!returnToMainMenu) { // Continue until flag is true
             displayMenu();
@@ -71,4 +86,5 @@ public class OwnerMenu extends TextMenu{
         }
         returnToMainMenu = false; // Reset flag for next iteration
     }
+
 }
