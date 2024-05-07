@@ -1,6 +1,5 @@
 package com.example.repository;
 
-import com.example.model.Bank;
 import com.example.model.BankAccount;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,13 +27,32 @@ public class BankAccountRepositoryImpl implements BankAccountRepository {
         }
     }
 
-    @Override
+
+    /*    @Override
     public List<BankAccount> getAllBankAccounts() {
         try (Session session = sessionFactory.openSession()) {
             Query<BankAccount> query = session.createQuery("FROM BankAccount", BankAccount.class);
             return query.list();
         }
 
+    }*/
+
+    @Override
+    public List<BankAccount> getAllBankAccounts() {
+        try (Session session = sessionFactory.openSession()) {
+            Query<BankAccount> query = session.createQuery("SELECT ba FROM BankAccount ba LEFT JOIN FETCH ba.owners", BankAccount.class);
+            return query.list();
+        }
     }
+
+    @Override
+    public void updateBankAccount(BankAccount chosenAccount) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.merge(chosenAccount);
+            session.getTransaction().commit();
+        }
+    }
+
 
 }

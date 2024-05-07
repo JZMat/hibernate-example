@@ -22,4 +22,9 @@ public class BankAccountServiceImpl implements BankAccountService {
     public List<BankAccount> getAllBankAccounts() {
         return bankAccountRepository.getAllBankAccounts();
     }
+
+    @Override
+    public void updateBankAccount(BankAccount chosenAccount) {
+        bankAccountRepository.updateBankAccount(chosenAccount);
+    }
 }

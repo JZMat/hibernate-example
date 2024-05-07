@@ -8,4 +8,6 @@ public interface BankAccountRepository {
     void saveBankAccount(BankAccount bankAccount);
 
     List<BankAccount> getAllBankAccounts();
+
+    void updateBankAccount(BankAccount chosenAccount);
 }

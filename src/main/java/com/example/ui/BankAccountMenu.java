@@ -1,7 +1,7 @@
 package com.example.ui;
 
-import com.example.model.BankAccount;
 import com.example.model.Bank;
+import com.example.model.BankAccount;
 import com.example.model.Owner;
 import com.example.service.BankAccountService;
 import com.example.service.OwnerService;
@@ -13,20 +13,17 @@ import java.util.InputMismatchException;
 import java.util.List;
 
 public class BankAccountMenu extends TextMenu {
-    // Instance variable for bank account service
     private final BankAccountService bankAccountService;
     private final OwnerService ownerService;
     private final BankService bankService;
     private boolean returnToMainMenu = false;
 
-    // Constructor
     public BankAccountMenu(BankAccountService bankAccountService, OwnerService ownerService, BankService bankService) {
         this.bankAccountService = bankAccountService;
         this.ownerService = ownerService;
         this.bankService = bankService;
     }
 
-    // Override method to display the bank account menu
     @Override
     public void displayMenu() {
         System.out.println("Bank Account Management Menu:");
@@ -53,7 +50,7 @@ public class BankAccountMenu extends TextMenu {
                     break;
                 case 4:
                     System.out.println("Returning to main menu...");
-                    returnToMainMenu = true; // Set flag to true
+                    returnToMainMenu = true;
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -64,8 +61,6 @@ public class BankAccountMenu extends TextMenu {
         }
     }
 
-
-    // Method to create a new bank account
     private void createNewBankAccount() {
         String accountName = InputUtils.getStringInput("Enter the name of the new bank account: ");
 
@@ -88,8 +83,6 @@ public class BankAccountMenu extends TextMenu {
         System.out.println("Bank account '" + accountName + "' created successfully in '" + chosenBank.getBank_name() + "' bank!");
     }
 
-
-    // Method to view all bank accounts
     private void viewAllBankAccounts() {
         List<BankAccount> bankAccounts = bankAccountService.getAllBankAccounts();
         if (bankAccounts.isEmpty()) {
@@ -102,7 +95,6 @@ public class BankAccountMenu extends TextMenu {
         }
     }
 
-    // Method to assign an owner to a bank account
     private void assignOwnerToBankAccount() {
         List<Owner> owners = ownerService.getAllOwners();
         if (owners.isEmpty()) {
@@ -136,18 +128,16 @@ public class BankAccountMenu extends TextMenu {
         chosenAccount.getOwners().size();
 
         chosenAccount.addOwner(chosenOwner);
-        bankAccountService.saveBankAccount(chosenAccount);
+        bankAccountService.updateBankAccount(chosenAccount);
 
         System.out.println("Owner '" + chosenOwner.getOwner_name() + "' has been assigned to bank account '" + chosenAccount.getAccount_name() + "'.");
     }
 
-
     public void run() {
-        while (!returnToMainMenu) { // Continue until flag is true
+        while (!returnToMainMenu) {
             displayMenu();
             handleUserInput();
         }
-        returnToMainMenu = false; // Reset flag for next iteration
+        returnToMainMenu = false;
     }
 }
-
