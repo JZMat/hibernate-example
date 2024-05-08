@@ -1,12 +1,13 @@
 // Package declaration
 package com.example.util;
 
-// Import statement
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.Scanner;
+// Import statements
 
-// Input utils class
+import java.math.BigDecimal; // Import for BigDecimal class
+import java.math.RoundingMode; // Import for RoundingMode enum
+import java.util.Scanner; // Import for Scanner class
+
+// Utility class for handling user input
 public class InputUtils {
     // Static scanner instance
     private static final Scanner scanner = new Scanner(System.in);
@@ -15,29 +16,64 @@ public class InputUtils {
     private InputUtils() {
     }
 
-    // Static method to get string input
+    /**
+     * Static method to get a string input from the user.
+     *
+     * @param message the message to prompt the user
+     * @return the string input provided by the user
+     */
     public static String getStringInput(String message) {
         System.out.print(message);
-        scanner.nextLine();
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+        // There's no need to consume a newline character in this method because nextLine() consumes the newline character automatically.
+        return input;
     }
 
-    // Static method to get integer input
+    /**
+     * Static method to get an integer input from the user.
+     *
+     * @param message the message to prompt the user
+     * @return the integer input provided by the user
+     */
     public static int getIntInput(String message) {
         System.out.print(message);
         int input = scanner.nextInt();
         scanner.nextLine(); // Consume the newline character
         return input;
-        //return scanner.nextInt();
     }
 
+    /**
+     * Static method to get a BigDecimal input from the user.
+     *
+     * @param message the message to prompt the user
+     * @return the BigDecimal input provided by the user
+     */
     public static BigDecimal getBigDecimalInput(String message) {
         System.out.print(message);
+       /* try {
+            Thread.sleep(10000); // Add a one-second delay
+        } catch (InterruptedException e) {
+            // Handle interruption exception
+        }*/
         BigDecimal amount = null;
         while (amount == null) {
             try {
-                String input = scanner.nextLine().trim().replace(",", ""); // Remove any commas in the input
+                String input = scanner.nextLine(); //.trim().replace(",", "");
+
+/*                System.out.println("Input string: " + input);
+                System.out.println("Type of input: " + input.getClass().getSimpleName());*/
+
+
+                input = input.trim().replace(",", "."); // Remove any commas in the input
+/*                System.out.println("Type of input after replacing: " + input.getClass().getSimpleName());
+                System.out.println("Trimmed input string: " + input);*/
+/*                try {
+                    Thread.sleep(10000); // Add a one-second delay
+                } catch (InterruptedException e) {
+                    // Handle interruption exception
+                }*/
                 amount = new BigDecimal(input);
+                System.out.println("Amount BigDecimal: " + amount);
                 if (amount.compareTo(BigDecimal.ZERO) < 0) {
                     System.out.print("Invalid input. Please enter a non-negative value: ");
                     amount = null;
@@ -48,6 +84,4 @@ public class InputUtils {
         }
         return amount.setScale(2, RoundingMode.HALF_UP); // Round to 2 decimal places
     }
-
 }
-

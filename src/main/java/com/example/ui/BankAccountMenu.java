@@ -74,11 +74,12 @@ public class BankAccountMenu extends TextMenu {
 
         System.out.println("List of all bank accounts:");
         for (int i = 0; i < bankAccounts.size(); i++) {
-            System.out.println((i + 1) + ". " + bankAccounts.get(i).getAccount_name());
+            BankAccount bankAccount = bankAccounts.get(i);
+            System.out.println((i + 1) + ". " + bankAccount.getAccount_name() + " - Balance: " + bankAccount.getBalance());
         }
 
         int accountChoice = InputUtils.getIntInput("Choose a bank account by entering its number: ");
-        BankAccount chosenAccount = bankAccounts.get(accountChoice - 1);
+        BankAccount chosenAccount = bankAccounts.get(accountChoice - 1); // Adjust for 0-based indexing
 
         BigDecimal amount = InputUtils.getBigDecimalInput("Enter the amount to deposit: ");
         chosenAccount.setBalance(chosenAccount.getBalance().add(amount));

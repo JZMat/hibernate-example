@@ -62,6 +62,7 @@ public class BankMenu extends TextMenu{
     // Method to create a new bank
     private void createNewBank() {
         String bankName = InputUtils.getStringInput("Enter the name of the new bank: ");
+        System.out.println("Received bank name: " + bankName);
         Bank bank = new Bank(bankName);
         bankService.saveBank(bank);
         System.out.println("Bank '" + bankName + "' created successfully!");
