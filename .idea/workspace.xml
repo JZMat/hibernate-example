@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="Deposit funds into an account function has been implemented.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/test/Test.java" afterDir="false" />
+    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="'Deposit funds into an account' function has been modified.&#10;String input = scanner.nextLine().trim().replace(&quot;&quot;,&quot;, &quot;&quot;); in 'getBigDecimalInput' method of 'InputUtils' class did not work for entering string with the comma separator instead of the dot one. For instance input '5,00' was not added as '500'.&#10;&#10;This is why I split this line of code into two lines, i.e.&#10;String input = scanner.nextLine();&#10;input = input.trim().replace(&quot;,&quot;, &quot;&quot;);&#10;&#10;Next I have changed &quot;&quot; into &quot;.&quot; i.e. 'replace(&quot;,&quot;, &quot;&quot;)' to get '5,00' interpreted as '5.00'.&#10;&#10;After replacement took place it was possible to keep the code concise, but I have not returned into 'String input = scanner.nextLine().trim().replace(&quot;,&quot;, &quot;.&quot;);'.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BankMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/util/InputUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/util/InputUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715098459671</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="'Deposit funds into an account' function has been modified.&#10;String input = scanner.nextLine().trim().replace(&quot;&quot;,&quot;, &quot;&quot;); in 'getBigDecimalInput' method of 'InputUtils' class did not work for entering string with the comma separator instead of the dot one. For instance input '5,00' was not added as '500'.&#10;&#10;This is why I split this line of code into two lines, i.e.&#10;String input = scanner.nextLine();&#10;input = input.trim().replace(&quot;,&quot;, &quot;&quot;);&#10;&#10;Next I have changed &quot;&quot; into &quot;.&quot; i.e. 'replace(&quot;,&quot;, &quot;&quot;)' to get '5,00' interpreted as '5.00'.&#10;&#10;After replacement took place it was possible to keep the code concise, but I have not returned into 'String input = scanner.nextLine().trim().replace(&quot;,&quot;, &quot;.&quot;);'.">
+      <option name="closed" value="true" />
+      <created>1715172516983</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1715172516983</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -196,6 +201,7 @@
     <MESSAGE value="This version does not work if one try to associate a BankAccount to a user." />
     <MESSAGE value="This version allows you to link a bank account to a user, but it is not a smart version. It's hard to guess which account belongs to whom when people have a separate account with the same name at the same bank." />
     <MESSAGE value="Deposit funds into an account function has been implemented." />
-    <option name="LAST_COMMIT_MESSAGE" value="Deposit funds into an account function has been implemented." />
+    <MESSAGE value="'Deposit funds into an account' function has been modified.&#10;String input = scanner.nextLine().trim().replace(&quot;&quot;,&quot;, &quot;&quot;); in 'getBigDecimalInput' method of 'InputUtils' class did not work for entering string with the comma separator instead of the dot one. For instance input '5,00' was not added as '500'.&#10;&#10;This is why I split this line of code into two lines, i.e.&#10;String input = scanner.nextLine();&#10;input = input.trim().replace(&quot;,&quot;, &quot;&quot;);&#10;&#10;Next I have changed &quot;&quot; into &quot;.&quot; i.e. 'replace(&quot;,&quot;, &quot;&quot;)' to get '5,00' interpreted as '5.00'.&#10;&#10;After replacement took place it was possible to keep the code concise, but I have not returned into 'String input = scanner.nextLine().trim().replace(&quot;,&quot;, &quot;.&quot;);'." />
+    <option name="LAST_COMMIT_MESSAGE" value="'Deposit funds into an account' function has been modified.&#10;String input = scanner.nextLine().trim().replace(&quot;&quot;,&quot;, &quot;&quot;); in 'getBigDecimalInput' method of 'InputUtils' class did not work for entering string with the comma separator instead of the dot one. For instance input '5,00' was not added as '500'.&#10;&#10;This is why I split this line of code into two lines, i.e.&#10;String input = scanner.nextLine();&#10;input = input.trim().replace(&quot;,&quot;, &quot;&quot;);&#10;&#10;Next I have changed &quot;&quot; into &quot;.&quot; i.e. 'replace(&quot;,&quot;, &quot;&quot;)' to get '5,00' interpreted as '5.00'.&#10;&#10;After replacement took place it was possible to keep the code concise, but I have not returned into 'String input = scanner.nextLine().trim().replace(&quot;,&quot;, &quot;.&quot;);'." />
   </component>
 </project>
