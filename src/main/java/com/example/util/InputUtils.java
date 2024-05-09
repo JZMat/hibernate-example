@@ -2,15 +2,15 @@
 package com.example.util;
 
 // Import statements
-
 import java.math.BigDecimal; // Import for BigDecimal class
 import java.math.RoundingMode; // Import for RoundingMode enum
+import java.util.InputMismatchException;
 import java.util.Scanner; // Import for Scanner class
 
 // Utility class for handling user input
 public class InputUtils {
     // Static scanner instance
-    private static final Scanner scanner = new Scanner(System.in);
+    public static final Scanner scanner = new Scanner(System.in);
 
     // Private constructor to prevent instantiation
     private InputUtils() {
@@ -70,5 +70,24 @@ public class InputUtils {
             }
         }
         return amount.setScale(2, RoundingMode.HALF_UP); // Round to 2 decimal places
+    }
+
+    public static int getValidatedInput(String prompt, int min, int max) {
+        int input;
+        while (true) {
+            try {
+                input = InputUtils.getIntInput(prompt);
+                if (input < min || input > max) {
+                    throw new IndexOutOfBoundsException();
+                }
+                break; // Break the loop if input is valid
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input type. Please enter a number.");
+                scanner.nextLine(); // Consume the rest of the line of input
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Invalid number. Please choose a number between " + min + " and " + max + ".");
+            }
+        }
+        return input;
     }
 }

@@ -1,3 +1,4 @@
+/*
 package com.example.ui;
 
 import com.example.model.Bank;
@@ -13,9 +14,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Set;
 
-import static com.example.util.InputUtils.scanner;
-
-public class BankAccountMenu extends TextMenu {
+public class ChatGptBankAccountMenu extends TextMenu {
     private final BankAccountService bankAccountService;
     private final OwnerService ownerService;
     private final BankService bankService;
@@ -39,27 +38,32 @@ public class BankAccountMenu extends TextMenu {
 
     @Override
     public void handleUserInput() {
-        int choice = InputUtils.getValidatedInput("Enter your choice: ", 1, 5);
-        switch (choice) {
-            case 1:
-                createNewBankAccount();
-                break;
-            case 2:
-                viewAllBankAccounts();
-                break;
-            case 3:
-                assignOwnerToBankAccount();
-                break;
-            case 4:
-                depositFunds();
-                break;
-            case 5:
-                System.out.println("Returning to main menu...");
-                returnToMainMenu = true;
-                break;
-            default:
-                System.out.println("Invalid choice. Please try again.");
-                break;
+        try {
+            int choice = InputUtils.getIntInput("Enter your choice: ");
+
+            switch (choice) {
+                case 1:
+                    createNewBankAccount();
+                    break;
+                case 2:
+                    viewAllBankAccounts();
+                    break;
+                case 3:
+                    assignOwnerToBankAccount();
+                    break;
+                case 4:
+                    depositFunds();
+                    break;
+                case 5:
+                    System.out.println("Returning to main menu...");
+                    returnToMainMenu = true;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input type. Please enter a number.");
         }
     }
 
@@ -74,19 +78,16 @@ public class BankAccountMenu extends TextMenu {
 
         int accountChoice;
         while (true) {
-            int min = 1;
-            int max = bankAccounts.size();
             try {
                 accountChoice = InputUtils.getIntInput("Choose a bank account by entering its number: ");
-                if (accountChoice < min || accountChoice > max) {
+                if (accountChoice < 1 || accountChoice > bankAccounts.size()) {
                     throw new IndexOutOfBoundsException();
                 }
                 break; // Break the loop if input is valid
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input type. Please enter a number.");
-                scanner.nextLine(); // Consume the rest of the line of input
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("Invalid account number. Please choose a number within the provided range between " + min + " and " + max + ".");
+                System.out.println("Invalid account number. Please choose a number within the provided range.");
             }
         }
         BankAccount chosenAccount = bankAccounts.get(accountChoice - 1); // Adjust for 0-based indexing
@@ -239,7 +240,6 @@ public class BankAccountMenu extends TextMenu {
         return ownerNames.toString();
     }
 
-
     private void assignOwnerToBankAccount() {
         List<Owner> owners = ownerService.getAllOwners();
         if (owners.isEmpty()) {
@@ -248,13 +248,11 @@ public class BankAccountMenu extends TextMenu {
         }
 
         // Print list of owners
-        System.out.println("List of all owners:");
-        for (int i = 0; i < owners.size(); i++) {
-            System.out.println((i + 1) + ". " + owners.get(i).getOwner_name());
-        }
+        printOwners(owners);
 
-        int ownerChoice = InputUtils.getIntInput("Choose an owner by entering their number: ");
-        Owner chosenOwner = owners.get(ownerChoice - 1);
+        // Select an owner
+        int ownerChoice = selectOwner(owners);
+        Owner chosenOwner = owners.get(ownerChoice);
 
         List<BankAccount> bankAccounts = bankAccountService.getAllBankAccounts();
         if (bankAccounts.isEmpty()) {
@@ -262,10 +260,33 @@ public class BankAccountMenu extends TextMenu {
             return;
         }
 
-        viewAllBankAccounts();
+        // Print list of bank accounts
+        printBankAccounts(bankAccounts);
 
-        int accountChoice = InputUtils.getIntInput("Choose a bank account by entering their number: ");
-        BankAccount chosenAccount = bankAccounts.get(accountChoice - 1);
+        // Select a bank account
+        int accountChoice = selectBankAccount(bankAccounts);
+        BankAccount chosenAccount = bankAccounts.get(accountChoice);
+
+        */
+/*
+
+            int accountChoice;
+        while (true) {
+            try {
+                accountChoice = InputUtils.getIntInput("Choose a bank account by entering its number: ");
+                if (accountChoice < 1 || accountChoice > bankAccounts.size()) {
+                    throw new IndexOutOfBoundsException();
+                }
+                break; // Break the loop if input is valid
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input type. Please enter a number.");
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Invalid account number. Please choose a number within the provided range.");
+            }
+        }
+        BankAccount chosenAccount = bankAccounts.get(accountChoice - 1); // Adjust for 0-based indexing
+      *//*
+
 
         // Access the owners set to initialize it while the session is still open
         int ownerSetSize = chosenAccount.getOwners().size();
@@ -276,6 +297,28 @@ public class BankAccountMenu extends TextMenu {
         System.out.println("Owner '" + chosenOwner.getOwner_name() + "' has been assigned to bank account '" + chosenAccount.getAccount_name() + "'.");
     }
 
+    private void printOwners(List<Owner> owners) {
+        System.out.println("List of all owners:");
+        for (int i = 0; i < owners.size(); i++) {
+            System.out.println((i + 1) + ". " + owners.get(i).getOwner_name());
+        }
+    }
+
+    private int selectOwner(List<Owner> owners) {
+        return InputUtils.getIntInput("Choose an owner by entering their number: ") - 1;
+    }
+
+    private void printBankAccounts(List<BankAccount> bankAccounts) {
+        System.out.println("List of all bank accounts:");
+        for (int i = 0; i < bankAccounts.size(); i++) {
+            System.out.println((i + 1) + ". " + bankAccounts.get(i).getAccount_name());
+        }
+    }
+
+    private int selectBankAccount(List<BankAccount> bankAccounts) {
+        return InputUtils.getIntInput("Choose a bank account by entering their number: ") - 1;
+    }
+
     public void run() {
         while (!returnToMainMenu) {
             displayMenu();
@@ -284,3 +327,5 @@ public class BankAccountMenu extends TextMenu {
         returnToMainMenu = false;
     }
 }
+
+*/
