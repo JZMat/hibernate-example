@@ -24,7 +24,8 @@ public class InputUtils {
      */
     public static String getStringInput(String message) {
         System.out.print(message);
-        String input = scanner.nextLine();
+        String input;
+        input = scanner.nextLine();
         // There's no need to consume a newline character in this method because nextLine() consumes the newline character automatically.
         return input;
     }
@@ -50,28 +51,14 @@ public class InputUtils {
      */
     public static BigDecimal getBigDecimalInput(String message) {
         System.out.print(message);
-       /* try {
-            Thread.sleep(10000); // Add a one-second delay
-        } catch (InterruptedException e) {
-            // Handle interruption exception
-        }*/
+
         BigDecimal amount = null;
         while (amount == null) {
             try {
-                String input = scanner.nextLine(); //.trim().replace(",", "");
-
-/*                System.out.println("Input string: " + input);
-                System.out.println("Type of input: " + input.getClass().getSimpleName());*/
-
-
+                String input;
+                input = scanner.nextLine();
                 input = input.trim().replace(",", "."); // Remove any commas in the input
-/*                System.out.println("Type of input after replacing: " + input.getClass().getSimpleName());
-                System.out.println("Trimmed input string: " + input);*/
-/*                try {
-                    Thread.sleep(10000); // Add a one-second delay
-                } catch (InterruptedException e) {
-                    // Handle interruption exception
-                }*/
+
                 amount = new BigDecimal(input);
                 System.out.println("Amount BigDecimal: " + amount);
                 if (amount.compareTo(BigDecimal.ZERO) < 0) {

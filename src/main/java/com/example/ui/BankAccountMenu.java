@@ -128,17 +128,13 @@ public class BankAccountMenu extends TextMenu {
             int longestAccountNameLength = findLongestBankAccountNameLength(bankAccounts);
             int longestBankNameLength = findLongestBankNameLength(bankAccounts);
             int longestBalanceLength = findLongestBalanceLength(bankAccounts);
-            int totalLength = "Index".length() + longestAccountNameLength + longestBalanceLength + longestBankNameLength + "Zorro, Jasio".length()
+            int longestOwnersNamesLength = findLongestOwnersNamesLength(bankAccounts);
+            int totalLength = "Index".length() + longestAccountNameLength + longestBalanceLength + longestBankNameLength + longestOwnersNamesLength
                     + " | ".length() * 4;
 
-            System.out.println("\nseparator length: " + totalLength + ":\n");
-            System.out.println("longestAccountNameLength: " + longestAccountNameLength);
-            System.out.println("longestBalanceLength: " + longestBalanceLength);
-            System.out.println("longestBankNameLength: " + longestBankNameLength);
-            System.out.println("longestOwnersLength: " + "Zorro, Jasio".length());
-
             for (int i = 0; i < bankAccounts.size(); i++) {
-                System.out.println(formatBankAccount(totalLength, i + 1, bankAccounts.get(i), longestAccountNameLength, longestBalanceLength, longestBankNameLength));
+                System.out.println(formatBankAccount(totalLength, i + 1, bankAccounts.get(i), longestAccountNameLength, longestBalanceLength,
+                        longestBankNameLength, longestOwnersNamesLength));
             }
         }
     }
@@ -177,20 +173,41 @@ public class BankAccountMenu extends TextMenu {
         return maxLength;
     }
 
+    private int findLongestOwnersNamesLength(List<BankAccount> bankAccounts) {
+        int maxLength = 0;
+        for (BankAccount account : bankAccounts) {
+            Set<Owner> owners = account.getOwners();
+            StringBuilder ownersNames = new StringBuilder();
+            for (Owner owner : owners) {
+                if (ownersNames.length() > 0) {
+                    ownersNames.append(", "); // Add comma and space if not the first owner
+                }
+                ownersNames.append(owner.getOwner_name());
+            }
+            int ownerLength = ownersNames.length(); // Total length of owner names
+            if (ownerLength > maxLength) {
+                maxLength = ownerLength;
+            }
+        }
+        return maxLength;
+    }
+
+
     private String formatBankAccount(int totalLength, int index, BankAccount bankAccount, int longestAccountNameLength,
-                                     int longestBalanceLength, int longestBankNameLength) {
+                                     int longestBalanceLength, int longestBankNameLength, int longestOwnerNameLength) {
         String accountColumnWidthSpecifier = "%-" + (longestAccountNameLength) + "s";
         String bankColumnWidthSpecifier = "%-" + (longestBankNameLength) + "s";
         String balanceColumnWidthSpecifier = "%-" + (longestBalanceLength) + ".2f";
         String balanceHeaderColumnWidthSpecifier = "%-" + (longestBalanceLength) + "s";
+        String ownersColumnWidthSpecifier = "%-" + (longestOwnerNameLength) + "s\n";
         String separator = "-".repeat(totalLength);
 
         if (index == 1) {
             return String.format("\nList of all bank accounts:\n" +
                             separator + "\n" +
-                            "Index | " + accountColumnWidthSpecifier + " | " + balanceHeaderColumnWidthSpecifier + " | " + bankColumnWidthSpecifier + " | %-40s\n" +
+                            "Index | " + accountColumnWidthSpecifier + " | " + balanceHeaderColumnWidthSpecifier + " | " + bankColumnWidthSpecifier + " | " + ownersColumnWidthSpecifier +
                             separator + "\n" +
-                            "%-5d | " + accountColumnWidthSpecifier + " | " + balanceColumnWidthSpecifier + " | " + bankColumnWidthSpecifier + " | %s\n",
+                            "%-5d | " + accountColumnWidthSpecifier + " | " + balanceColumnWidthSpecifier + " | " + bankColumnWidthSpecifier + " | " + ownersColumnWidthSpecifier,
                     "Account", "Balance", "Bank", "Owners",
                     index,
                     bankAccount.getAccount_name(),
@@ -199,7 +216,7 @@ public class BankAccountMenu extends TextMenu {
                     getOwnersAsString(bankAccount.getOwners())) +
                     separator;
         } else {
-            return String.format("%-5d | " + accountColumnWidthSpecifier + " | " + balanceColumnWidthSpecifier + " | " + bankColumnWidthSpecifier + " | %s\n",
+            return String.format("%-5d | " + accountColumnWidthSpecifier + " | " + balanceColumnWidthSpecifier + " | " + bankColumnWidthSpecifier + " | " + ownersColumnWidthSpecifier,
                     index,
                     bankAccount.getAccount_name(),
                     bankAccount.getBalance(),
