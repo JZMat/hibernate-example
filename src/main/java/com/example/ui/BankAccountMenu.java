@@ -73,10 +73,7 @@ public class BankAccountMenu extends TextMenu {
             return;
         }
 
-        System.out.println("List of all bank accounts:");
-        for (int i = 0; i < bankAccounts.size(); i++) {
-            System.out.println(formatBankAccount(i + 1, bankAccounts.get(i)));
-        }
+        viewAllBankAccounts();
 
         int accountChoice;
         while (true) {
@@ -128,35 +125,87 @@ public class BankAccountMenu extends TextMenu {
         if (bankAccounts.isEmpty()) {
             System.out.println("No bank accounts found.");
         } else {
-            // System.out.println("List of all bank accounts:");
+            int longestAccountNameLength = findLongestBankAccountNameLength(bankAccounts);
+            int longestBankNameLength = findLongestBankNameLength(bankAccounts);
+            int longestBalanceLength = findLongestBalanceLength(bankAccounts);
+            int totalLength = "Index".length() + longestAccountNameLength + longestBalanceLength + longestBankNameLength + "Zorro, Jasio".length()
+                    + " | ".length() * 4;
+
+            System.out.println("\nseparator length: " + totalLength + ":\n");
+            System.out.println("longestAccountNameLength: " + longestAccountNameLength);
+            System.out.println("longestBalanceLength: " + longestBalanceLength);
+            System.out.println("longestBankNameLength: " + longestBankNameLength);
+            System.out.println("longestOwnersLength: " + "Zorro, Jasio".length());
+
             for (int i = 0; i < bankAccounts.size(); i++) {
-                System.out.println(formatBankAccount(i + 1, bankAccounts.get(i)));
+                System.out.println(formatBankAccount(totalLength, i + 1, bankAccounts.get(i), longestAccountNameLength, longestBalanceLength, longestBankNameLength));
             }
         }
     }
 
-    private String formatBankAccount(int index, BankAccount bankAccount) {
+    private int findLongestBalanceLength(List<BankAccount> bankAccounts) {
+        int maxLength = 0;
+        for (BankAccount account : bankAccounts) {
+            String balanceString = account.getBalance().toString();
+            int length = balanceString.length();
+            if (length > maxLength) {
+                maxLength = length;
+            }
+        }
+        return maxLength;
+    }
+
+    private int findLongestBankNameLength(List<BankAccount> bankAccounts) {
+        int maxLength = 0;
+        for (BankAccount account : bankAccounts) {
+            int length = account.getBank().getBank_name().length();
+            if (length > maxLength) {
+                maxLength = length;
+            }
+        }
+        return maxLength;
+    }
+
+    public int findLongestBankAccountNameLength(List<BankAccount> bankAccounts) {
+        int maxLength = 0;
+        for (BankAccount account : bankAccounts) {
+            int length = account.getAccount_name().length();
+            if (length > maxLength) {
+                maxLength = length;
+            }
+        }
+        return maxLength;
+    }
+
+    private String formatBankAccount(int totalLength, int index, BankAccount bankAccount, int longestAccountNameLength,
+                                     int longestBalanceLength, int longestBankNameLength) {
+        String accountColumnWidthSpecifier = "%-" + (longestAccountNameLength) + "s";
+        String bankColumnWidthSpecifier = "%-" + (longestBankNameLength) + "s";
+        String balanceColumnWidthSpecifier = "%-" + (longestBalanceLength) + ".2f";
+        String balanceHeaderColumnWidthSpecifier = "%-" + (longestBalanceLength) + "s";
+        String separator = "-".repeat(totalLength);
+
         if (index == 1) {
             return String.format("\nList of all bank accounts:\n" +
-                            "------------------------------------------------------------------------------------------------\n" +
-                            "Index | %-40s | %-10s | %-20s | %-40s\n" +
-                            "------------------------------------------------------------------------------------------------\n" +
-                            "%-5d | %-40s | %10.2f | %-20s | %s\n",
+                            separator + "\n" +
+                            "Index | " + accountColumnWidthSpecifier + " | " + balanceHeaderColumnWidthSpecifier + " | " + bankColumnWidthSpecifier + " | %-40s\n" +
+                            separator + "\n" +
+                            "%-5d | " + accountColumnWidthSpecifier + " | " + balanceColumnWidthSpecifier + " | " + bankColumnWidthSpecifier + " | %s\n",
                     "Account", "Balance", "Bank", "Owners",
                     index,
                     bankAccount.getAccount_name(),
                     bankAccount.getBalance(),
                     bankAccount.getBank().getBank_name(),
-                        getOwnersAsString(bankAccount.getOwners())) +
-                    "------------------------------------------------------------------------------------------------";
+                    getOwnersAsString(bankAccount.getOwners())) +
+                    separator;
         } else {
-            return String.format("%-5d | %-40s | %10.2f | %-20s | %s\n",
+            return String.format("%-5d | " + accountColumnWidthSpecifier + " | " + balanceColumnWidthSpecifier + " | " + bankColumnWidthSpecifier + " | %s\n",
                     index,
                     bankAccount.getAccount_name(),
                     bankAccount.getBalance(),
                     bankAccount.getBank().getBank_name(),
                     getOwnersAsString(bankAccount.getOwners())) +
-                    "------------------------------------------------------------------------------------------------";
+                    separator;
         }
     }
 
@@ -195,11 +244,7 @@ public class BankAccountMenu extends TextMenu {
             return;
         }
 
-        System.out.println("List of all bank accounts:");
-
-        for (int i = 0; i < bankAccounts.size(); i++) {
-            System.out.println(formatBankAccount(i + 1, bankAccounts.get(i)));
-        }
+        viewAllBankAccounts();
 
         int accountChoice = InputUtils.getIntInput("Choose a bank account by entering their number: ");
         BankAccount chosenAccount = bankAccounts.get(accountChoice - 1);
