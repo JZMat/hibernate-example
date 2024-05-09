@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="'Deposit funds into an account' function has been modified.&#10;String input = scanner.nextLine().trim().replace(&quot;&quot;,&quot;, &quot;&quot;); in 'getBigDecimalInput' method of 'InputUtils' class did not work for entering string with the comma separator instead of the dot one. For instance input '5,00' was not added as '500'.&#10;&#10;This is why I split this line of code into two lines, i.e.&#10;String input = scanner.nextLine();&#10;input = input.trim().replace(&quot;,&quot;, &quot;&quot;);&#10;&#10;Next I have changed &quot;&quot; into &quot;.&quot; i.e. 'replace(&quot;,&quot;, &quot;&quot;)' to get '5,00' interpreted as '5.00'.&#10;&#10;After replacement took place it was possible to keep the code concise, but I have not returned into 'String input = scanner.nextLine().trim().replace(&quot;,&quot;, &quot;.&quot;);'.">
+    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="This version prints all detail for bank accounts:&#10;List of all bank accounts:&#10;Index, Account Name, Amount, Bank Name, Owners.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" afterDir="false" />
     </list>
@@ -38,18 +38,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Application.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.Test.executor": "Run",
-    "Application.com.example.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
+    &quot;Application.com.example.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.Application">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.Application" />
@@ -179,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715172516983</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="This version prints all detail for bank accounts:&#10;List of all bank accounts:&#10;Index, Account Name, Amount, Bank Name, Owners.">
+      <option name="closed" value="true" />
+      <created>1715180102798</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1715180102798</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -202,6 +210,7 @@
     <MESSAGE value="This version allows you to link a bank account to a user, but it is not a smart version. It's hard to guess which account belongs to whom when people have a separate account with the same name at the same bank." />
     <MESSAGE value="Deposit funds into an account function has been implemented." />
     <MESSAGE value="'Deposit funds into an account' function has been modified.&#10;String input = scanner.nextLine().trim().replace(&quot;&quot;,&quot;, &quot;&quot;); in 'getBigDecimalInput' method of 'InputUtils' class did not work for entering string with the comma separator instead of the dot one. For instance input '5,00' was not added as '500'.&#10;&#10;This is why I split this line of code into two lines, i.e.&#10;String input = scanner.nextLine();&#10;input = input.trim().replace(&quot;,&quot;, &quot;&quot;);&#10;&#10;Next I have changed &quot;&quot; into &quot;.&quot; i.e. 'replace(&quot;,&quot;, &quot;&quot;)' to get '5,00' interpreted as '5.00'.&#10;&#10;After replacement took place it was possible to keep the code concise, but I have not returned into 'String input = scanner.nextLine().trim().replace(&quot;,&quot;, &quot;.&quot;);'." />
-    <option name="LAST_COMMIT_MESSAGE" value="'Deposit funds into an account' function has been modified.&#10;String input = scanner.nextLine().trim().replace(&quot;&quot;,&quot;, &quot;&quot;); in 'getBigDecimalInput' method of 'InputUtils' class did not work for entering string with the comma separator instead of the dot one. For instance input '5,00' was not added as '500'.&#10;&#10;This is why I split this line of code into two lines, i.e.&#10;String input = scanner.nextLine();&#10;input = input.trim().replace(&quot;,&quot;, &quot;&quot;);&#10;&#10;Next I have changed &quot;&quot; into &quot;.&quot; i.e. 'replace(&quot;,&quot;, &quot;&quot;)' to get '5,00' interpreted as '5.00'.&#10;&#10;After replacement took place it was possible to keep the code concise, but I have not returned into 'String input = scanner.nextLine().trim().replace(&quot;,&quot;, &quot;.&quot;);'." />
+    <MESSAGE value="This version prints all detail for bank accounts:&#10;List of all bank accounts:&#10;Index, Account Name, Amount, Bank Name, Owners." />
+    <option name="LAST_COMMIT_MESSAGE" value="This version prints all detail for bank accounts:&#10;List of all bank accounts:&#10;Index, Account Name, Amount, Bank Name, Owners." />
   </component>
 </project>

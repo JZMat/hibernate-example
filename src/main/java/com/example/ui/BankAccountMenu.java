@@ -74,15 +74,9 @@ public class BankAccountMenu extends TextMenu {
         }
 
         System.out.println("List of all bank accounts:");
-  /*      for (int i = 0; i < bankAccounts.size(); i++) {
-            BankAccount bankAccount = bankAccounts.get(i);
-            System.out.println((i + 1) + ". " + formatBankAccount(bankAccounts.get(i))); //+ bankAccount.getAccount_name() + " - Balance: " + bankAccount.getBalance());
-        }*/for (int i = 0; i < bankAccounts.size(); i++) {
+        for (int i = 0; i < bankAccounts.size(); i++) {
             System.out.println(formatBankAccount(i + 1, bankAccounts.get(i)));
         }
-
-
-        //int accountChoice = InputUtils.getIntInput("Choose a bank account by entering its number: ");
 
         int accountChoice;
         while (true) {
@@ -134,68 +128,37 @@ public class BankAccountMenu extends TextMenu {
         if (bankAccounts.isEmpty()) {
             System.out.println("No bank accounts found.");
         } else {
-            System.out.println("List of all bank accounts:");
-         /*   for (BankAccount bankAccount : bankAccounts) {
-                System.out.println(formatBankAccount(bankAccount));
-                //System.out.println(displayBankAccounts(bankAccounts)););
-            }*/
-
+            // System.out.println("List of all bank accounts:");
             for (int i = 0; i < bankAccounts.size(); i++) {
                 System.out.println(formatBankAccount(i + 1, bankAccounts.get(i)));
             }
-      /*      for (BankAccount bankAccount : bankAccounts) {
-                System.out.println("Account Name: " + bankAccount.getAccount_name() +
-                        " - Balance: " + bankAccount.getBalance() +
-                        " - Bank: " + bankAccount.getBank().getBank_name() +
-                        " - Owners: " + getOwnersAsString(bankAccount.getOwners()));
-            }*/
         }
     }
-
- /*   private void displayBankAccounts(List<BankAccount> bankAccounts) {
-        for (int i = 0; i < bankAccounts.size(); i++) {
-            BankAccount bankAccount = bankAccounts.get(i);
-            System.out.println(formatBankAccount(getIndex(i), bankAccount));
-        }
-    }
-
-    private int getIndex(int currentIndex) {
-        return currentIndex + 1; // Adjusting the index to start from 1
-    }*/
 
     private String formatBankAccount(int index, BankAccount bankAccount) {
-        return String.format("%3d | %-40s | %-10s | %-20s | %s",
-                index,
-                bankAccount.getAccount_name(),
-                bankAccount.getBalance(),
-                bankAccount.getBank().getBank_name(),
-                getOwnersAsString(bankAccount.getOwners())
-        );
+        if (index == 1) {
+            return String.format("\nList of all bank accounts:\n" +
+                            "------------------------------------------------------------------------------------------------\n" +
+                            "Index | %-40s | %-10s | %-20s | %-40s\n" +
+                            "------------------------------------------------------------------------------------------------\n" +
+                            "%-5d | %-40s | %10.2f | %-20s | %s\n",
+                    "Account", "Balance", "Bank", "Owners",
+                    index,
+                    bankAccount.getAccount_name(),
+                    bankAccount.getBalance(),
+                    bankAccount.getBank().getBank_name(),
+                        getOwnersAsString(bankAccount.getOwners())) +
+                    "------------------------------------------------------------------------------------------------";
+        } else {
+            return String.format("%-5d | %-40s | %10.2f | %-20s | %s\n",
+                    index,
+                    bankAccount.getAccount_name(),
+                    bankAccount.getBalance(),
+                    bankAccount.getBank().getBank_name(),
+                    getOwnersAsString(bankAccount.getOwners())) +
+                    "------------------------------------------------------------------------------------------------";
+        }
     }
-
-
-    private String oldformatBankAccount(BankAccount bankAccount) {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        String header = String.format("%-40s | %-10s | %-20s | %s\n",
-                "Account Name", "Balance", "Bank", "Owners");
-
-        stringBuilder.append(header);
-        stringBuilder.append("-".repeat(93)).append("\n"); // Add horizontal line
-
-        String accountName = bankAccount.getAccount_name();
-        BigDecimal balance = bankAccount.getBalance();
-        String bankName = bankAccount.getBank().getBank_name();
-        String owners = getOwnersAsString(bankAccount.getOwners());
-
-        String formattedString = String.format("%-40s | %-10.2f | %-20s | %s\n",
-                accountName, balance, bankName, owners);
-
-        stringBuilder.append(formattedString);
-
-        return stringBuilder.toString();
-    }
-
 
     private String getOwnersAsString(Set<Owner> owners) {
         if (owners.isEmpty()) {
@@ -233,9 +196,7 @@ public class BankAccountMenu extends TextMenu {
         }
 
         System.out.println("List of all bank accounts:");
-     /*   for (int i = 0; i < bankAccounts.size(); i++) {
-            System.out.println((i + 1) + ". " + formatBankAccount(bankAccounts.get(i))); // bankAccounts.get(i).getAccount_name());
-        }*/
+
         for (int i = 0; i < bankAccounts.size(); i++) {
             System.out.println(formatBankAccount(i + 1, bankAccounts.get(i)));
         }
