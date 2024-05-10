@@ -7,9 +7,9 @@ import com.example.service.BankAccountService;
 import com.example.service.OwnerService;
 import com.example.service.BankService;
 import com.example.util.InputUtils;
+import com.example.util.StringUtils;
 
 import java.math.BigDecimal;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Set;
 
@@ -72,23 +72,7 @@ public class BankAccountMenu extends TextMenu {
 
         viewAllBankAccounts();
 
-        int accountChoice;
-        while (true) {
-            int min = 1;
-            int max = bankAccounts.size();
-            try {
-                accountChoice = InputUtils.getIntInput("Choose a bank account by entering its number: ");
-                if (accountChoice < min || accountChoice > max) {
-                    throw new IndexOutOfBoundsException();
-                }
-                break; // Break the loop if input is valid
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input type. Please enter a number.");
-                scanner.nextLine(); // Consume the rest of the line of input
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Invalid account number. Please choose a number within the provided range between " + min + " and " + max + ".");
-            }
-        }
+        int accountChoice = InputUtils.getValidatedInput("Enter your choice: ", 1, bankAccounts.size());
         BankAccount chosenAccount = bankAccounts.get(accountChoice - 1); // Adjust for 0-based indexing
 
         BigDecimal amount = InputUtils.getBigDecimalInput("Enter the amount to deposit: ");
@@ -112,8 +96,9 @@ public class BankAccountMenu extends TextMenu {
             System.out.println((i + 1) + ". " + banks.get(i).getBank_name());
         }
 
-        int bankChoice = InputUtils.getIntInput("Choose a bank by entering their number: ");
-        Bank chosenBank = banks.get(bankChoice - 1);
+//        int bankChoice = InputUtils.getIntInput("Choose a bank by entering their number: ");
+        int bankChoice = InputUtils.getValidatedInput("Choose a bank by entering its number: ", 1, banks.size());
+        Bank chosenBank = banks.get(bankChoice - 1); // Adjust for 0-based indexing
 
         BankAccount bankAccount = new BankAccount(accountName, BigDecimal.ZERO, chosenBank);
         bankAccountService.saveBankAccount(bankAccount);
@@ -125,52 +110,17 @@ public class BankAccountMenu extends TextMenu {
         if (bankAccounts.isEmpty()) {
             System.out.println("No bank accounts found.");
         } else {
-            int longestAccountNameLength = findLongestBankAccountNameLength(bankAccounts);
-            int longestBankNameLength = findLongestBankNameLength(bankAccounts);
-            int longestBalanceLength = findLongestBalanceLength(bankAccounts);
+            int longestAccountNameLength = StringUtils.findLongestStringLength(bankAccounts,BankAccount::getAccount_name);
+            int longestBankNameLength = StringUtils.findLongestStringLength(bankAccounts,bankAccount -> bankAccount.getBank().getBank_name());
+            int longestBalanceLength = StringUtils.findLongestStringLength(bankAccounts, bankAccount -> bankAccount.getBalance().toString());
             int longestOwnersNamesLength = findLongestOwnersNamesLength(bankAccounts);
             int totalLength = "Index".length() + longestAccountNameLength + longestBalanceLength + longestBankNameLength + longestOwnersNamesLength
                     + " | ".length() * 4;
-
             for (int i = 0; i < bankAccounts.size(); i++) {
                 System.out.println(formatBankAccount(totalLength, i + 1, bankAccounts.get(i), longestAccountNameLength, longestBalanceLength,
                         longestBankNameLength, longestOwnersNamesLength));
             }
         }
-    }
-
-    private int findLongestBalanceLength(List<BankAccount> bankAccounts) {
-        int maxLength = 0;
-        for (BankAccount account : bankAccounts) {
-            String balanceString = account.getBalance().toString();
-            int length = balanceString.length();
-            if (length > maxLength) {
-                maxLength = length;
-            }
-        }
-        return maxLength;
-    }
-
-    private int findLongestBankNameLength(List<BankAccount> bankAccounts) {
-        int maxLength = 0;
-        for (BankAccount account : bankAccounts) {
-            int length = account.getBank().getBank_name().length();
-            if (length > maxLength) {
-                maxLength = length;
-            }
-        }
-        return maxLength;
-    }
-
-    public int findLongestBankAccountNameLength(List<BankAccount> bankAccounts) {
-        int maxLength = 0;
-        for (BankAccount account : bankAccounts) {
-            int length = account.getAccount_name().length();
-            if (length > maxLength) {
-                maxLength = length;
-            }
-        }
-        return maxLength;
     }
 
     private int findLongestOwnersNamesLength(List<BankAccount> bankAccounts) {
@@ -241,6 +191,7 @@ public class BankAccountMenu extends TextMenu {
 
 
     private void assignOwnerToBankAccount() {
+
         List<Owner> owners = ownerService.getAllOwners();
         if (owners.isEmpty()) {
             System.out.println("No owners found. Please create an owner first.");
@@ -253,7 +204,8 @@ public class BankAccountMenu extends TextMenu {
             System.out.println((i + 1) + ". " + owners.get(i).getOwner_name());
         }
 
-        int ownerChoice = InputUtils.getIntInput("Choose an owner by entering their number: ");
+        // int ownerChoice = InputUtils.getIntInput("Choose an owner by entering their number: ");
+        int ownerChoice = InputUtils.getValidatedInput("Choose an owner by entering their number: ", 1, owners.size());
         Owner chosenOwner = owners.get(ownerChoice - 1);
 
         List<BankAccount> bankAccounts = bankAccountService.getAllBankAccounts();
@@ -264,7 +216,8 @@ public class BankAccountMenu extends TextMenu {
 
         viewAllBankAccounts();
 
-        int accountChoice = InputUtils.getIntInput("Choose a bank account by entering their number: ");
+        // int accountChoice = InputUtils.getIntInput("Choose a bank account by entering their number: ");
+        int accountChoice = InputUtils.getValidatedInput("Enter your choice: ", 1, bankAccounts.size());
         BankAccount chosenAccount = bankAccounts.get(accountChoice - 1);
 
         // Access the owners set to initialize it while the session is still open
