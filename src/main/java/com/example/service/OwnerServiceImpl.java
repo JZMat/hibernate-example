@@ -6,6 +6,7 @@ import com.example.repository.OwnerRepository;
 import java.util.List;
 
 public class OwnerServiceImpl implements OwnerService {
+
     private final OwnerRepository ownerRepository;
 
     public OwnerServiceImpl(OwnerRepository ownerRepository) {

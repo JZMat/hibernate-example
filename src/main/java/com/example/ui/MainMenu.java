@@ -40,39 +40,36 @@ public class MainMenu extends TextMenu {
     // Override method to handle user input
     @Override
     public void handleUserInput() {
-        try {
-            int choice = InputUtils.getIntInput("Enter your choice: ");
-            switch (choice) {
-                case 1:
-                    // Code to navigate to BankMenu
-                    BankMenu bankMenu = new BankMenu(bankService);
-                    bankMenu.run();
-                    break;
-                case 2:
-                    // Code to navigate to OwnerMenu
-                    OwnerMenu ownerMenu = new OwnerMenu(ownerService);
-                    ownerMenu.run();
-                    break;
-                case 3:
-                    // Code to navigate to BankAccountMenu
-                    BankAccountMenu bankAccountMenu = new BankAccountMenu(bankAccountService, ownerService, bankService);
-                    bankAccountMenu.run();
-                    break;
-                // case 4:
-                //
-                //break;
-                case 5:
-                    System.out.println("Exiting...");
-                    exitRequested = true; // Set exit flag
-                    return; // Return from the method
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-                    break;
-            }
-        } catch (InputMismatchException e) {
-            System.out.println("Invalid input type. Please enter a number.");
-        }
 
+        int choice = InputUtils.getValidatedInput("Enter your choice: ", 1, 5);
+        switch (choice) {
+            case 1:
+                // Code to navigate to BankMenu
+                BankMenu bankMenu = new BankMenu(bankService);
+                bankMenu.run();
+                break;
+            case 2:
+                // Code to navigate to OwnerMenu
+                OwnerMenu ownerMenu = new OwnerMenu(ownerService);
+                ownerMenu.run();
+                break;
+            case 3:
+                // Code to navigate to BankAccountMenu
+                BankAccountMenu bankAccountMenu = new BankAccountMenu(bankAccountService, ownerService, bankService);
+                bankAccountMenu.run();
+                break;
+            case 4:
+                //  Code to navigate to sth.
+                System.out.println("Not implemented yet.");
+                break;
+            case 5:
+                System.out.println("Exiting...");
+                exitRequested = true; // Set exit flag
+                return; // Return from the method
+            default:
+                System.out.println("Invalid choice. Please try again.");
+                break;
+        }
     }
 
     public void run() {

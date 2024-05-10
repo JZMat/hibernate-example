@@ -11,3 +11,23 @@ There are a few areas that could be improved:
 5. **User Interface Enhancement**: Providing a more user-friendly interface with clearer instructions and options can enhance the user experience.
 
 6. **Code Comments**: Adding comments to explain complex logic or important decisions can help other developers (including your future self) understand the code more easily.
+
+
+
+For 'BankAccountMenu' class:
+
+Redundancy in displayFormattedBankAccounts and depositFunds methods: Both methods call retrieveAllBankAccounts() to get all bank accounts.
+However, in depositFunds, you’re also calling bankAccountService.getAllBankAccounts() before displayFormattedBankAccounts(). You can remove the call
+to bankAccountService.getAllBankAccounts() in depositFunds to avoid redundancy.
+
+Redundancy in assignOwnerToBankAccount method: Similar to the first point, you’re calling bankAccountService.getAllBankAccounts() and then
+retrieveAllBankAccounts(). You can remove the call to bankAccountService.getAllBankAccounts() to avoid redundancy.
+
+Redundancy in formatBankAccountAndHeader method: You’re creating the separator string every time the method is called. Since the separator doesn’t
+change, you can make it a class-level constant to avoid recreating it every time.
+
+Redundancy in getOwnersAsString method: You’re appending a comma and a space to the ownerNames string builder and then removing the last two
+characters. Instead, you can use a StringJoiner with a delimiter of ", " to avoid the need to remove the last two characters.
+
+Redundancy in run method: The returnToMainMenu flag is set to false at the end of the run method. However, this is not necessary because the while
+loop will only exit when returnToMainMenu is true, so setting it to false afterwards is redundant.

@@ -8,8 +8,10 @@ import java.util.InputMismatchException;
 import java.util.List;
 
 public class OwnerMenu extends TextMenu {
+
     // Instance variable for owner service
     private final OwnerService ownerService;
+
     private boolean returnToMainMenu = false;
 
     // Constructor
@@ -29,33 +31,30 @@ public class OwnerMenu extends TextMenu {
 
     @Override
     public void handleUserInput() {
-        try {
-            int choice = InputUtils.getIntInput("Enter your choice: ");
 
-            switch (choice) {
-                case 1:
-                    createNewOwner();
-                    break;
-                case 2:
-                    viewAllOwners();
-                    break;
-                case 3:
-                    // updateOwnerDetails();
-                    break;
-                case 4:
-                    // deleteOwner();
-                    break;
-                case 5:
-                    System.out.println("Returning to main menu...");
-                    returnToMainMenu = true; // Set flag to true
-                    break;
-                default:
-                    break;
-            }
-        } catch (InputMismatchException e) {
-            System.out.println("Invalid input type. Please enter a number.");
+        int choice = InputUtils.getValidatedInput("Enter your choice: ", 1, 5);
+
+        switch (choice) {
+            case 1:
+                createNewOwner();
+                break;
+            case 2:
+                viewAllOwners();
+                break;
+            case 3:
+                // updateOwnerDetails();
+                break;
+            case 4:
+                // deleteOwner();
+                break;
+            case 5:
+                System.out.println("Returning to main menu...");
+                returnToMainMenu = true; // Set flag to true
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+                break;
         }
-
     }
 
     private void createNewOwner() {

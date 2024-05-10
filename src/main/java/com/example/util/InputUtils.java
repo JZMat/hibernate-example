@@ -82,10 +82,10 @@ public class InputUtils {
                 }
                 break; // Break the loop if input is valid
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input type. Please enter a number.");
+                System.out.println("getValidatedInput -> Invalid input type. Please enter a number.");
                 scanner.nextLine(); // Consume the rest of the line of input
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("Invalid number. Please choose a number between " + min + " and " + max + ".");
+                System.out.println("getValidatedInput -> Invalid number. Please choose a number between " + min + " and " + max + ".");
             }
         }
         return input;

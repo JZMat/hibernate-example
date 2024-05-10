@@ -13,8 +13,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
-import static com.example.util.InputUtils.scanner;
-
 public class BankAccountMenu extends TextMenu {
     private final BankAccountService bankAccountService;
     private final OwnerService ownerService;
@@ -39,13 +37,15 @@ public class BankAccountMenu extends TextMenu {
 
     @Override
     public void handleUserInput() {
+
         int choice = InputUtils.getValidatedInput("Enter your choice: ", 1, 5);
+
         switch (choice) {
             case 1:
                 createNewBankAccount();
                 break;
             case 2:
-                viewAllBankAccounts();
+                displayFormattedBankAccounts(retrieveAllBankAccounts());
                 break;
             case 3:
                 assignOwnerToBankAccount();
@@ -64,13 +64,14 @@ public class BankAccountMenu extends TextMenu {
     }
 
     private void depositFunds() {
+
         List<BankAccount> bankAccounts = bankAccountService.getAllBankAccounts();
         if (bankAccounts.isEmpty()) {
             System.out.println("No bank accounts found. Please create a bank account first.");
             return;
         }
 
-        viewAllBankAccounts();
+        displayFormattedBankAccounts(bankAccounts);
 
         int accountChoice = InputUtils.getValidatedInput("Enter your choice: ", 1, bankAccounts.size());
         BankAccount chosenAccount = bankAccounts.get(accountChoice - 1); // Adjust for 0-based indexing
@@ -80,6 +81,10 @@ public class BankAccountMenu extends TextMenu {
 
         bankAccountService.updateBankAccount(chosenAccount);
         System.out.println("Funds deposited successfully. New balance: " + chosenAccount.getBalance());
+    }
+
+    private List<BankAccount> retrieveAllBankAccounts() {
+        return bankAccountService.getAllBankAccounts();
     }
 
     private void createNewBankAccount() {
@@ -96,7 +101,6 @@ public class BankAccountMenu extends TextMenu {
             System.out.println((i + 1) + ". " + banks.get(i).getBank_name());
         }
 
-//        int bankChoice = InputUtils.getIntInput("Choose a bank by entering their number: ");
         int bankChoice = InputUtils.getValidatedInput("Choose a bank by entering its number: ", 1, banks.size());
         Bank chosenBank = banks.get(bankChoice - 1); // Adjust for 0-based indexing
 
@@ -105,52 +109,51 @@ public class BankAccountMenu extends TextMenu {
         System.out.println("Bank account '" + accountName + "' created successfully in '" + chosenBank.getBank_name() + "' bank!");
     }
 
-    private void viewAllBankAccounts() {
-        List<BankAccount> bankAccounts = bankAccountService.getAllBankAccounts();
+    private void displayFormattedBankAccounts(List<BankAccount> bankAccounts) {
+
         if (bankAccounts.isEmpty()) {
             System.out.println("No bank accounts found.");
         } else {
-            int longestAccountNameLength = StringUtils.findLongestStringLength(bankAccounts,BankAccount::getAccount_name);
-            int longestBankNameLength = StringUtils.findLongestStringLength(bankAccounts,bankAccount -> bankAccount.getBank().getBank_name());
-            int longestBalanceLength = StringUtils.findLongestStringLength(bankAccounts, bankAccount -> bankAccount.getBalance().toString());
-            int longestOwnersNamesLength = findLongestOwnersNamesLength(bankAccounts);
+            int longestAccountNameLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, BankAccount::getAccount_name), "Account".length());
+            int longestBankNameLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, bankAccount -> bankAccount.getBank().getBank_name()), "Bank".length());
+            int longestBalanceLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, bankAccount -> bankAccount.getBalance().toString()), "Balance".length());
+            int longestOwnersNamesLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, account -> {
+                Set<Owner> owners = account.getOwners();
+                StringBuilder ownersNames = new StringBuilder();
+                for (Owner owner : owners) {
+                    if (ownersNames.length() > 0) {
+                        ownersNames.append(", "); // Add comma and space if not the first owner
+                    }
+                    ownersNames.append(owner.getOwner_name());
+                }
+                return ownersNames.toString();
+            }), "Owners".length());
+
             int totalLength = "Index".length() + longestAccountNameLength + longestBalanceLength + longestBankNameLength + longestOwnersNamesLength
                     + " | ".length() * 4;
+            String separator = "-".repeat(totalLength);
+
+            System.out.println("longestAccountNameLength: " + longestAccountNameLength);
+            System.out.println("longestBalanceLength: " + longestBalanceLength);
+            System.out.println("longestBankNameLength: " + longestBankNameLength);
+            System.out.println("longestOwnersNamesLength: " + longestOwnersNamesLength);
+            System.out.println("totalLength: " + totalLength);
+
             for (int i = 0; i < bankAccounts.size(); i++) {
-                System.out.println(formatBankAccount(totalLength, i + 1, bankAccounts.get(i), longestAccountNameLength, longestBalanceLength,
+                System.out.println(formatBankAccountAndHeader(separator, i + 1, bankAccounts.get(i), longestAccountNameLength, longestBalanceLength,
                         longestBankNameLength, longestOwnersNamesLength));
             }
         }
     }
 
-    private int findLongestOwnersNamesLength(List<BankAccount> bankAccounts) {
-        int maxLength = 0;
-        for (BankAccount account : bankAccounts) {
-            Set<Owner> owners = account.getOwners();
-            StringBuilder ownersNames = new StringBuilder();
-            for (Owner owner : owners) {
-                if (ownersNames.length() > 0) {
-                    ownersNames.append(", "); // Add comma and space if not the first owner
-                }
-                ownersNames.append(owner.getOwner_name());
-            }
-            int ownerLength = ownersNames.length(); // Total length of owner names
-            if (ownerLength > maxLength) {
-                maxLength = ownerLength;
-            }
-        }
-        return maxLength;
-    }
-
-
-    private String formatBankAccount(int totalLength, int index, BankAccount bankAccount, int longestAccountNameLength,
-                                     int longestBalanceLength, int longestBankNameLength, int longestOwnerNameLength) {
+    private String formatBankAccountAndHeader(String separator, int index, BankAccount bankAccount, int longestAccountNameLength,
+                                              int longestBalanceLength, int longestBankNameLength, int longestOwnerNameLength) {
         String accountColumnWidthSpecifier = "%-" + (longestAccountNameLength) + "s";
         String bankColumnWidthSpecifier = "%-" + (longestBankNameLength) + "s";
         String balanceColumnWidthSpecifier = "%-" + (longestBalanceLength) + ".2f";
         String balanceHeaderColumnWidthSpecifier = "%-" + (longestBalanceLength) + "s";
         String ownersColumnWidthSpecifier = "%-" + (longestOwnerNameLength) + "s\n";
-        String separator = "-".repeat(totalLength);
+
 
         if (index == 1) {
             return String.format("\nList of all bank accounts:\n" +
@@ -214,7 +217,7 @@ public class BankAccountMenu extends TextMenu {
             return;
         }
 
-        viewAllBankAccounts();
+        displayFormattedBankAccounts(bankAccounts);
 
         // int accountChoice = InputUtils.getIntInput("Choose a bank account by entering their number: ");
         int accountChoice = InputUtils.getValidatedInput("Enter your choice: ", 1, bankAccounts.size());

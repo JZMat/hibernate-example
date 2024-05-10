@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="'getValidatedInput' method created in 'InputUtil' class to validate user input.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/util/StringUtils.java" afterDir="false" />
+    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="Implemented 'com.example.util.StringUtils' class with a generic method 'findLongestStringLength'. This method is used in the 'com.example.ui.BankAccountMenu' class to get 'longestAccountNameLength', 'longestBankNameLength', and 'longestBalanceLength'.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/BankAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/BankAccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/BankAccountRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/BankAccountRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/BankRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/BankRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/BankRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/BankRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/OwnerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/OwnerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/OwnerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/OwnerServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BankMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/ChatGptBankAccountMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/OwnerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/OwnerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/TextMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/TextMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/util/InputUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/util/InputUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/documentation/Doc" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/documentation/Doc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +235,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715282425999</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Implemented 'com.example.util.StringUtils' class with a generic method 'findLongestStringLength'. This method is used in the 'com.example.ui.BankAccountMenu' class to get 'longestAccountNameLength', 'longestBankNameLength', and 'longestBalanceLength'.">
+      <option name="closed" value="true" />
+      <created>1715328147826</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1715328147826</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -247,6 +270,7 @@
     <MESSAGE value="This version dynamically adjust the width of the Account Name, Amount, Bank Name columns in 'formatBankAccount' method based on the longest: account name length, balance length and bank name length in the bank accounts." />
     <MESSAGE value="This version dynamically adjust the width of the Owners column." />
     <MESSAGE value="'getValidatedInput' method created in 'InputUtil' class to validate user input." />
-    <option name="LAST_COMMIT_MESSAGE" value="'getValidatedInput' method created in 'InputUtil' class to validate user input." />
+    <MESSAGE value="Implemented 'com.example.util.StringUtils' class with a generic method 'findLongestStringLength'. This method is used in the 'com.example.ui.BankAccountMenu' class to get 'longestAccountNameLength', 'longestBankNameLength', and 'longestBalanceLength'." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented 'com.example.util.StringUtils' class with a generic method 'findLongestStringLength'. This method is used in the 'com.example.ui.BankAccountMenu' class to get 'longestAccountNameLength', 'longestBankNameLength', and 'longestBalanceLength'." />
   </component>
 </project>

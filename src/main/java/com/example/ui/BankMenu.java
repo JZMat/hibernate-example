@@ -7,7 +7,7 @@ import com.example.util.InputUtils;
 import java.util.InputMismatchException;
 import java.util.List;
 
-public class BankMenu extends TextMenu{
+public class BankMenu extends TextMenu {
     // Instance variable for bank service
     private final BankService bankService;
     private boolean returnToMainMenu = false;
@@ -30,32 +30,31 @@ public class BankMenu extends TextMenu{
 
     @Override
     public void handleUserInput() {
-        try {
-            int choice = InputUtils.getIntInput("Enter your choice: ");
 
-            switch (choice) {
-                case 1:
-                    createNewBank();
-                    break;
-                case 2:
-                    viewAllBanks();
-                    break;
-                case 3:
-                    // updateBankDetails();
-                    break;
-                case 4:
-                    // deleteBank();
-                    break;
-                case 5:
-                    System.out.println("Returning to main menu...");
-                    returnToMainMenu = true; // Set flag to true
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-                    break;
-            }
-        } catch (InputMismatchException e) {
-            System.out.println("Invalid input type. Please enter a number.");
+        int choice = InputUtils.getValidatedInput("Enter your choice: ", 1, 5);
+
+        switch (choice) {
+            case 1:
+                createNewBank();
+                break;
+            case 2:
+                viewAllBanks();
+                break;
+            case 3:
+                System.out.println("Not implemented yet.");
+                // updateBankDetails();
+                break;
+            case 4:
+                System.out.println("Not implemented yet.");
+                // deleteBank();
+                break;
+            case 5:
+                System.out.println("Returning to main menu...");
+                returnToMainMenu = true; // Set flag to true
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+                break;
         }
     }
 
