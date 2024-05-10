@@ -34,14 +34,16 @@ public class MainMenu extends TextMenu {
         printOption("2", "Owner Management");
         printOption("3", "Bank Account Management");
         printOption("4", "Deposit Management");
-        printOption("5", "Exit");
+        printOption("5", "View Balance Sheets");
+        printOption("6", "Exit");
+
     }
 
     // Override method to handle user input
     @Override
     public void handleUserInput() {
 
-        int choice = InputUtils.getValidatedInput("Enter your choice: ", 1, 5);
+        int choice = InputUtils.getValidatedInput("Enter your choice: ", 1, 6);
         switch (choice) {
             case 1:
                 // Code to navigate to BankMenu
@@ -63,6 +65,11 @@ public class MainMenu extends TextMenu {
                 System.out.println("Not implemented yet.");
                 break;
             case 5:
+                // Code to navigate to BalanceSheetMenu
+                BalanceSheetMenu balanceSheetMenu = new BalanceSheetMenu(bankAccountService);
+                balanceSheetMenu.run();
+                break;
+            case 6:
                 System.out.println("Exiting...");
                 exitRequested = true; // Set exit flag
                 return; // Return from the method

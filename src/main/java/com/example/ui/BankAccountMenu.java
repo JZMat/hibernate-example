@@ -14,6 +14,13 @@ import java.util.List;
 import java.util.Set;
 
 public class BankAccountMenu extends TextMenu {
+    private static final String ACCOUNT_HEADER = "Account";
+    private static final String BALANCE_HEADER = "Balance";
+    private static final String BANK_HEADER = "Bank";
+    private static final String OWNERS_HEADER = "Owners";
+    private static final String INDEX_HEADER = "Index";
+
+
     private final BankAccountService bankAccountService;
     private final OwnerService ownerService;
     private final BankService bankService;
@@ -114,9 +121,9 @@ public class BankAccountMenu extends TextMenu {
         if (bankAccounts.isEmpty()) {
             System.out.println("No bank accounts found.");
         } else {
-            int longestAccountNameLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, BankAccount::getAccount_name), "Account".length());
-            int longestBankNameLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, bankAccount -> bankAccount.getBank().getBank_name()), "Bank".length());
-            int longestBalanceLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, bankAccount -> bankAccount.getBalance().toString()), "Balance".length());
+            int longestAccountNameLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, BankAccount::getAccount_name), ACCOUNT_HEADER.length());
+            int longestBankNameLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, bankAccount -> bankAccount.getBank().getBank_name()), BANK_HEADER.length());
+            int longestBalanceLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, bankAccount -> bankAccount.getBalance().toString()), BALANCE_HEADER.length());
             int longestOwnersNamesLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, account -> {
                 Set<Owner> owners = account.getOwners();
                 StringBuilder ownersNames = new StringBuilder();
@@ -127,9 +134,9 @@ public class BankAccountMenu extends TextMenu {
                     ownersNames.append(owner.getOwner_name());
                 }
                 return ownersNames.toString();
-            }), "Owners".length());
+            }), OWNERS_HEADER.length());
 
-            int totalLength = "Index".length() + longestAccountNameLength + longestBalanceLength + longestBankNameLength + longestOwnersNamesLength
+            int totalLength = INDEX_HEADER.length() + longestAccountNameLength + longestBalanceLength + longestBankNameLength + longestOwnersNamesLength
                     + " | ".length() * 4;
             String separator = "-".repeat(totalLength);
 
@@ -161,7 +168,7 @@ public class BankAccountMenu extends TextMenu {
                             "Index | " + accountColumnWidthSpecifier + " | " + balanceHeaderColumnWidthSpecifier + " | " + bankColumnWidthSpecifier + " | " + ownersColumnWidthSpecifier +
                             separator + "\n" +
                             "%-5d | " + accountColumnWidthSpecifier + " | " + balanceColumnWidthSpecifier + " | " + bankColumnWidthSpecifier + " | " + ownersColumnWidthSpecifier,
-                    "Account", "Balance", "Bank", "Owners",
+                    ACCOUNT_HEADER, BALANCE_HEADER, BANK_HEADER, OWNERS_HEADER,
                     index,
                     bankAccount.getAccount_name(),
                     bankAccount.getBalance(),
@@ -207,8 +214,7 @@ public class BankAccountMenu extends TextMenu {
             System.out.println((i + 1) + ". " + owners.get(i).getOwner_name());
         }
 
-        // int ownerChoice = InputUtils.getIntInput("Choose an owner by entering their number: ");
-        int ownerChoice = InputUtils.getValidatedInput("Choose an owner by entering their number: ", 1, owners.size());
+        int ownerChoice = InputUtils.getValidatedInput("Choose an owner by entering his number: ", 1, owners.size());
         Owner chosenOwner = owners.get(ownerChoice - 1);
 
         List<BankAccount> bankAccounts = bankAccountService.getAllBankAccounts();
@@ -220,7 +226,7 @@ public class BankAccountMenu extends TextMenu {
         displayFormattedBankAccounts(bankAccounts);
 
         // int accountChoice = InputUtils.getIntInput("Choose a bank account by entering their number: ");
-        int accountChoice = InputUtils.getValidatedInput("Enter your choice: ", 1, bankAccounts.size());
+        int accountChoice = InputUtils.getValidatedInput("Choose a bank account by entering its number: ", 1, bankAccounts.size());
         BankAccount chosenAccount = bankAccounts.get(accountChoice - 1);
 
         // Access the owners set to initialize it while the session is still open

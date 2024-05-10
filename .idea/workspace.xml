@@ -7,22 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="Implemented 'com.example.util.StringUtils' class with a generic method 'findLongestStringLength'. This method is used in the 'com.example.ui.BankAccountMenu' class to get 'longestAccountNameLength', 'longestBankNameLength', and 'longestBalanceLength'.">
+    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="The issue has been resolved that the longestOwnersNamesLength can be zero if there are no owners assigned to any bank account. In this case the length is as long as the header name “Owners”. &#10;Math.max has been used for all headers:&#10;Math.max(..., &quot;Account&quot;.length());&#10;Math.max(..., &quot;Bank&quot;.length());">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BalanceSheetMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/BankAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/BankAccountRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/BankAccountRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/BankAccountRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/BankRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/BankRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/BankRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/BankRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/OwnerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/OwnerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/OwnerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/OwnerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/BankAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/BankAccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/BankAccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/BankAccountServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BankMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/ChatGptBankAccountMenu.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/OwnerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/OwnerMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/TextMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/TextMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/util/InputUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/util/InputUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/documentation/Doc" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/documentation/Doc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +31,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "JZMat"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/JZMat/hibernate-example",
+    "accountId": "ea92ddda-9767-4f4d-a59b-e880f198c298"
+  }
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -243,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715328147826</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="The issue has been resolved that the longestOwnersNamesLength can be zero if there are no owners assigned to any bank account. In this case the length is as long as the header name “Owners”. &#10;Math.max has been used for all headers:&#10;Math.max(..., &quot;Account&quot;.length());&#10;Math.max(..., &quot;Bank&quot;.length());">
+      <option name="closed" value="true" />
+      <created>1715350254924</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1715350254924</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -271,6 +282,7 @@
     <MESSAGE value="This version dynamically adjust the width of the Owners column." />
     <MESSAGE value="'getValidatedInput' method created in 'InputUtil' class to validate user input." />
     <MESSAGE value="Implemented 'com.example.util.StringUtils' class with a generic method 'findLongestStringLength'. This method is used in the 'com.example.ui.BankAccountMenu' class to get 'longestAccountNameLength', 'longestBankNameLength', and 'longestBalanceLength'." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented 'com.example.util.StringUtils' class with a generic method 'findLongestStringLength'. This method is used in the 'com.example.ui.BankAccountMenu' class to get 'longestAccountNameLength', 'longestBankNameLength', and 'longestBalanceLength'." />
+    <MESSAGE value="The issue has been resolved that the longestOwnersNamesLength can be zero if there are no owners assigned to any bank account. In this case the length is as long as the header name “Owners”. &#10;Math.max has been used for all headers:&#10;Math.max(..., &quot;Account&quot;.length());&#10;Math.max(..., &quot;Bank&quot;.length());" />
+    <option name="LAST_COMMIT_MESSAGE" value="The issue has been resolved that the longestOwnersNamesLength can be zero if there are no owners assigned to any bank account. In this case the length is as long as the header name “Owners”. &#10;Math.max has been used for all headers:&#10;Math.max(..., &quot;Account&quot;.length());&#10;Math.max(..., &quot;Bank&quot;.length());" />
   </component>
 </project>
