@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class BankAccountServiceImpl implements BankAccountService {
     private final BankAccountRepository bankAccountRepository;
@@ -53,11 +54,9 @@ public class BankAccountServiceImpl implements BankAccountService {
             String accountName = account.getAccount_name();
             BigDecimal balance = account.getBalance();
             Set<Owner> owners = account.getOwners();
-            for (Owner owner : owners) {
-                String ownerName = owner.getOwner_name();
-                balanceForEachOwner.putIfAbsent(ownerName, new HashMap<>());
-                balanceForEachOwner.get(ownerName).put(bankName + " - " + accountName, balance);
-            }
+            String ownerNames = owners.stream().map(Owner::getOwner_name).collect(Collectors.joining(", "));
+            balanceForEachOwner.putIfAbsent(ownerNames, new HashMap<>());
+            balanceForEachOwner.get(ownerNames).put(bankName + " - " + accountName, balance);
         }
         return balanceForEachOwner;
     }
@@ -70,14 +69,13 @@ public class BankAccountServiceImpl implements BankAccountService {
             String bankName = account.getBank().getBank_name();
             BigDecimal balance = account.getBalance();
             Set<Owner> owners = account.getOwners();
-            for (Owner owner : owners) {
-                String ownerName = owner.getOwner_name();
-                totalBalanceForEachOwnerByBank.putIfAbsent(ownerName, new HashMap<>());
-                totalBalanceForEachOwnerByBank.get(ownerName).put(bankName, totalBalanceForEachOwnerByBank.get(ownerName).getOrDefault(bankName, BigDecimal.ZERO).add(balance));
-            }
+            String ownerNames = owners.stream().map(Owner::getOwner_name).collect(Collectors.joining(", "));
+            totalBalanceForEachOwnerByBank.putIfAbsent(ownerNames, new HashMap<>());
+            totalBalanceForEachOwnerByBank.get(ownerNames).put(bankName, totalBalanceForEachOwnerByBank.get(ownerNames).getOrDefault(bankName, BigDecimal.ZERO).add(balance));
         }
         return totalBalanceForEachOwnerByBank;
     }
+
 
     @Override
     public Map<String, BigDecimal> getTotalBalanceForEachOwner() {
@@ -86,11 +84,10 @@ public class BankAccountServiceImpl implements BankAccountService {
         for (BankAccount account : allAccounts) {
             BigDecimal balance = account.getBalance();
             Set<Owner> owners = account.getOwners();
-            for (Owner owner : owners) {
-                String ownerName = owner.getOwner_name();
-                totalBalanceForEachOwner.put(ownerName, totalBalanceForEachOwner.getOrDefault(ownerName, BigDecimal.ZERO).add(balance));
-            }
+            String ownerNames = owners.stream().map(Owner::getOwner_name).collect(Collectors.joining(", "));
+            totalBalanceForEachOwner.put(ownerNames, totalBalanceForEachOwner.getOrDefault(ownerNames, BigDecimal.ZERO).add(balance));
         }
         return totalBalanceForEachOwner;
     }
+
 }

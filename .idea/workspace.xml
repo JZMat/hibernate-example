@@ -7,13 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="The issue has been resolved that the longestOwnersNamesLength can be zero if there are no owners assigned to any bank account. In this case the length is as long as the header name “Owners”. &#10;Math.max has been used for all headers:&#10;Math.max(..., &quot;Account&quot;.length());&#10;Math.max(..., &quot;Bank&quot;.length());">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BalanceSheetMenu.java" afterDir="false" />
+    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment=" Added a new option to the main menu for viewing balance sheets.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/BankAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/BankAccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/BankAccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/BankAccountServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BalanceSheetMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BalanceSheetMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,7 +251,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715350254924</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary=" Added a new option to the main menu for viewing balance sheets.">
+      <option name="closed" value="true" />
+      <created>1715360418942</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1715360418942</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -283,6 +288,7 @@
     <MESSAGE value="'getValidatedInput' method created in 'InputUtil' class to validate user input." />
     <MESSAGE value="Implemented 'com.example.util.StringUtils' class with a generic method 'findLongestStringLength'. This method is used in the 'com.example.ui.BankAccountMenu' class to get 'longestAccountNameLength', 'longestBankNameLength', and 'longestBalanceLength'." />
     <MESSAGE value="The issue has been resolved that the longestOwnersNamesLength can be zero if there are no owners assigned to any bank account. In this case the length is as long as the header name “Owners”. &#10;Math.max has been used for all headers:&#10;Math.max(..., &quot;Account&quot;.length());&#10;Math.max(..., &quot;Bank&quot;.length());" />
-    <option name="LAST_COMMIT_MESSAGE" value="The issue has been resolved that the longestOwnersNamesLength can be zero if there are no owners assigned to any bank account. In this case the length is as long as the header name “Owners”. &#10;Math.max has been used for all headers:&#10;Math.max(..., &quot;Account&quot;.length());&#10;Math.max(..., &quot;Bank&quot;.length());" />
+    <MESSAGE value=" Added a new option to the main menu for viewing balance sheets." />
+    <option name="LAST_COMMIT_MESSAGE" value=" Added a new option to the main menu for viewing balance sheets." />
   </component>
 </project>
