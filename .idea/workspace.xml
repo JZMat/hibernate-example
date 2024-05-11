@@ -7,16 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="Balances for accounts with multiple owners are treated as a separate entity and are not included in the individual owner's balance.">
+    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="Saving the program code before implementing the patch to:&#10;Redundancy in getOwnersAsString: You append a comma and a space to the string ownerNames constructor, then remove the last two characters. Instead, you can use a StringJoiner with a &quot;,&quot; delimiter to avoid having to remove the last two characters.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Bank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/BankAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/BankAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Owner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Owner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/BankAccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/BankAccountServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BalanceSheetMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BalanceSheetMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BankMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/OwnerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/OwnerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715366898560</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Saving the program code before implementing the patch to:&#10;Redundancy in getOwnersAsString: You append a comma and a space to the string ownerNames constructor, then remove the last two characters. Instead, you can use a StringJoiner with a &quot;,&quot; delimiter to avoid having to remove the last two characters.">
+      <option name="closed" value="true" />
+      <created>1715415897023</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1715415897023</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -304,6 +305,7 @@
     <MESSAGE value="The issue has been resolved that the longestOwnersNamesLength can be zero if there are no owners assigned to any bank account. In this case the length is as long as the header name “Owners”. &#10;Math.max has been used for all headers:&#10;Math.max(..., &quot;Account&quot;.length());&#10;Math.max(..., &quot;Bank&quot;.length());" />
     <MESSAGE value=" Added a new option to the main menu for viewing balance sheets." />
     <MESSAGE value="Balances for accounts with multiple owners are treated as a separate entity and are not included in the individual owner's balance." />
-    <option name="LAST_COMMIT_MESSAGE" value="Balances for accounts with multiple owners are treated as a separate entity and are not included in the individual owner's balance." />
+    <MESSAGE value="Saving the program code before implementing the patch to:&#10;Redundancy in getOwnersAsString: You append a comma and a space to the string ownerNames constructor, then remove the last two characters. Instead, you can use a StringJoiner with a &quot;,&quot; delimiter to avoid having to remove the last two characters." />
+    <option name="LAST_COMMIT_MESSAGE" value="Saving the program code before implementing the patch to:&#10;Redundancy in getOwnersAsString: You append a comma and a space to the string ownerNames constructor, then remove the last two characters. Instead, you can use a StringJoiner with a &quot;,&quot; delimiter to avoid having to remove the last two characters." />
   </component>
 </project>

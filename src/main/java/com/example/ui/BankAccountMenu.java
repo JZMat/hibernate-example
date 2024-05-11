@@ -12,6 +12,7 @@ import com.example.util.StringUtils;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
+import java.util.StringJoiner;
 
 public class BankAccountMenu extends TextMenu {
     private static final String ACCOUNT_HEADER = "Account";
@@ -124,7 +125,7 @@ public class BankAccountMenu extends TextMenu {
             int longestAccountNameLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, BankAccount::getAccount_name), ACCOUNT_HEADER.length());
             int longestBankNameLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, bankAccount -> bankAccount.getBank().getBank_name()), BANK_HEADER.length());
             int longestBalanceLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, bankAccount -> bankAccount.getBalance().toString()), BALANCE_HEADER.length());
-            int longestOwnersNamesLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, account -> {
+   /*         int longestOwnersNamesLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, account -> {
                 Set<Owner> owners = account.getOwners();
                 StringBuilder ownersNames = new StringBuilder();
                 for (Owner owner : owners) {
@@ -132,6 +133,14 @@ public class BankAccountMenu extends TextMenu {
                         ownersNames.append(", "); // Add comma and space if not the first owner
                     }
                     ownersNames.append(owner.getOwner_name());
+                }
+                return ownersNames.toString();
+            }), OWNERS_HEADER.length());*/
+            int longestOwnersNamesLength = Math.max(StringUtils.findLongestStringLength(bankAccounts, account -> {
+                Set<Owner> owners = account.getOwners();
+                StringJoiner ownersNames = new StringJoiner(", ");
+                for (Owner owner : owners) {
+                    ownersNames.add(owner.getOwner_name());
                 }
                 return ownersNames.toString();
             }), OWNERS_HEADER.length());
