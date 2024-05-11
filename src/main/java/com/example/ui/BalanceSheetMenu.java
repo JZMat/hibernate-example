@@ -82,7 +82,8 @@ public class BalanceSheetMenu extends TextMenu {
                     for (Map.Entry<String, BigDecimal> balanceEntry : balances.entrySet()) {
                         String bankName = balanceEntry.getKey();
                         BigDecimal balance = balanceEntry.getValue();
-                        System.out.println("    " + bankName + ": " + balance);
+                        // System.out.println("    " + bankName + ": " + balance);
+                        System.out.printf("    %-15s: %10.2f%n", bankName, balance);
                     }
                 }
                 break;

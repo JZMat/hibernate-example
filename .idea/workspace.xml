@@ -7,7 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="In this modification, I’ve replaced the StringBuilder with a StringJoiner that uses a comma and a space as the delimiter. This way, one don’t need to remove the last two characters after the loop. The StringJoiner will only add the delimiter between elements, not at the end. This should make this code more efficient and easier to read.">
+    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="Some small changes to get code more readable.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" afterDir="false" />
     </list>
@@ -282,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715416824762</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Some small changes to get code more readable.">
+      <option name="closed" value="true" />
+      <created>1715432147350</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1715432147350</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -315,6 +323,7 @@
     <MESSAGE value="Balances for accounts with multiple owners are treated as a separate entity and are not included in the individual owner's balance." />
     <MESSAGE value="Saving the program code before implementing the patch to:&#10;Redundancy in getOwnersAsString: You append a comma and a space to the string ownerNames constructor, then remove the last two characters. Instead, you can use a StringJoiner with a &quot;,&quot; delimiter to avoid having to remove the last two characters." />
     <MESSAGE value="In this modification, I’ve replaced the StringBuilder with a StringJoiner that uses a comma and a space as the delimiter. This way, one don’t need to remove the last two characters after the loop. The StringJoiner will only add the delimiter between elements, not at the end. This should make this code more efficient and easier to read." />
-    <option name="LAST_COMMIT_MESSAGE" value="In this modification, I’ve replaced the StringBuilder with a StringJoiner that uses a comma and a space as the delimiter. This way, one don’t need to remove the last two characters after the loop. The StringJoiner will only add the delimiter between elements, not at the end. This should make this code more efficient and easier to read." />
+    <MESSAGE value="Some small changes to get code more readable." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some small changes to get code more readable." />
   </component>
 </project>

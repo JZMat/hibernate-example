@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public class BankAccountMenu extends TextMenu {
     private static final String ACCOUNT_HEADER = "Account";
@@ -132,20 +133,33 @@ public class BankAccountMenu extends TextMenu {
             System.out.println("No bank accounts found.");
         } else {
 
-            int maxAcctNameLen = Math.max(StringUtils.findLongestStringLength(bankAccounts, BankAccount::getAccount_name), ACCOUNT_HEADER.length());
+            List<String> accountNames = bankAccounts.stream()
+                    .map(BankAccount::getAccount_name)
+                    .collect(Collectors.toList());
+            int maxAcctNameLen = Math.max(findLongestStringLength(accountNames), ACCOUNT_HEADER.length());
 
-            int maxBankNameLen = Math.max(StringUtils.findLongestStringLength(bankAccounts, bankAccount -> bankAccount.getBank().getBank_name()), BANK_HEADER.length());
+            List<String> bankNames = bankAccounts.stream()
+                    .map(bankAccount -> bankAccount.getBank().getBank_name())
+                    .collect(Collectors.toList());
+            int maxBankNameLen = Math.max(findLongestStringLength(bankNames), BANK_HEADER.length());
 
-            int maxBalanceLen = Math.max(StringUtils.findLongestStringLength(bankAccounts, bankAccount -> bankAccount.getBalance().toString()), BALANCE_HEADER.length());
+            List<String> balances = bankAccounts.stream()
+                    .map(bankAccount -> bankAccount.getBalance().toString())
+                    .collect(Collectors.toList());
+            int maxBalanceLen = Math.max(findLongestStringLength(balances), BALANCE_HEADER.length());
 
-            int maxOwnersNamesLen = Math.max(StringUtils.findLongestStringLength(bankAccounts, account -> {
-                Set<Owner> owners = account.getOwners();
-                StringJoiner ownersNames = new StringJoiner(", ");
-                for (Owner owner : owners) {
-                    ownersNames.add(owner.getOwner_name());
-                }
-                return ownersNames.toString();
-            }), OWNERS_HEADER.length());
+            List<String> ownersNames = bankAccounts.stream()
+                    .map(account -> {
+                        Set<Owner> owners = account.getOwners();
+                        StringJoiner ownersNamesJoiner = new StringJoiner(", ");
+                        for (Owner owner : owners) {
+                            ownersNamesJoiner.add(owner.getOwner_name());
+                        }
+                        return ownersNamesJoiner.toString();
+                    })
+                    .collect(Collectors.toList());
+
+            int maxOwnersNamesLen = Math.max(findLongestStringLength(ownersNames), OWNERS_HEADER.length());
 
             int totalLen = INDEX_HEADER.length() + maxAcctNameLen + maxBalanceLen + maxBankNameLen + maxOwnersNamesLen
                     + " | ".length() * 4;
@@ -162,6 +176,13 @@ public class BankAccountMenu extends TextMenu {
                         maxBankNameLen, maxOwnersNamesLen));
             }
         }
+    }
+
+    private int findLongestStringLength(List<String> strings) {
+        return strings.stream()
+                .mapToInt(String::length)
+                .max()
+                .orElse(0);
     }
 
     private String formatBankAccountAndHeader(String separator, int index, BankAccount bankAccount, int longestAccountNameLength,
