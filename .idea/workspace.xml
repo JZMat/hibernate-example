@@ -7,7 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="findLongestStringLength helper method that calculates the maximum length of a list of strings was created. This method takes a list of strings as input and return the length of the longest string. This method can then be used to calculate the maximum length of each column in displayFormattedBankAccounts method.">
+    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="Updated the balance display in the Balance Sheet Menu to align decimal digits in the same column. This was achieved by using the String.format() method to control the width of the printed fields. The account information is now left-justified and the balance is right-justified, which makes the output more readable and professional.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BalanceSheetMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BalanceSheetMenu.java" afterDir="false" />
     </list>
@@ -298,7 +298,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715435273522</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Updated the balance display in the Balance Sheet Menu to align decimal digits in the same column. This was achieved by using the String.format() method to control the width of the printed fields. The account information is now left-justified and the balance is right-justified, which makes the output more readable and professional.">
+      <option name="closed" value="true" />
+      <created>1715436831305</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1715436831305</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -333,6 +341,7 @@
     <MESSAGE value="In this modification, I’ve replaced the StringBuilder with a StringJoiner that uses a comma and a space as the delimiter. This way, one don’t need to remove the last two characters after the loop. The StringJoiner will only add the delimiter between elements, not at the end. This should make this code more efficient and easier to read." />
     <MESSAGE value="Some small changes to get code more readable." />
     <MESSAGE value="findLongestStringLength helper method that calculates the maximum length of a list of strings was created. This method takes a list of strings as input and return the length of the longest string. This method can then be used to calculate the maximum length of each column in displayFormattedBankAccounts method." />
-    <option name="LAST_COMMIT_MESSAGE" value="findLongestStringLength helper method that calculates the maximum length of a list of strings was created. This method takes a list of strings as input and return the length of the longest string. This method can then be used to calculate the maximum length of each column in displayFormattedBankAccounts method." />
+    <MESSAGE value="Updated the balance display in the Balance Sheet Menu to align decimal digits in the same column. This was achieved by using the String.format() method to control the width of the printed fields. The account information is now left-justified and the balance is right-justified, which makes the output more readable and professional." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the balance display in the Balance Sheet Menu to align decimal digits in the same column. This was achieved by using the String.format() method to control the width of the printed fields. The account information is now left-justified and the balance is right-justified, which makes the output more readable and professional." />
   </component>
 </project>

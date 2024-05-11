@@ -49,6 +49,7 @@ public class BalanceSheetMenu extends TextMenu {
             case 2:
 
                 // Code to display balance for each owner by bank and account
+                totalBalance = BigDecimal.ZERO;
                 Map<String, Map<String, BigDecimal>> balanceForEachOwner = bankAccountService.getBalanceForEachOwnerByBankAndAccount();
                 for (Map.Entry<String, Map<String, BigDecimal>> entry : balanceForEachOwner.entrySet()) {
                     String ownerNames = entry.getKey();
@@ -61,9 +62,16 @@ public class BalanceSheetMenu extends TextMenu {
                     for (Map.Entry<String, BigDecimal> balanceEntry : balances.entrySet()) {
                         String accountInfo = balanceEntry.getKey();
                         BigDecimal balance = balanceEntry.getValue();
+                        // Add the balance of the current account to the total balance
+                        totalBalance = totalBalance.add(balance);
                         // System.out.println("    " + accountInfo + ": " + balance);
                         System.out.printf("    %-45s %10.2f%n", accountInfo, balance);
                     }
+                    // Print the total balance
+                    // System.out.println("--------------------------------------------old");
+                    String separator = "-".repeat(60);
+                    System.out.println(separator);
+                    System.out.printf("    %-45s %10.2f%n", "Wrong Total balance", totalBalance);
                 }
                 break;
             case 3:
@@ -74,6 +82,7 @@ public class BalanceSheetMenu extends TextMenu {
             case 4:
                 // Code to display total balance by owner and bank
                 Map<String, Map<String, BigDecimal>> totalBalanceForEachOwnerByBank = bankAccountService.getTotalBalanceForEachOwnerByBank();
+                totalBalance = BigDecimal.ZERO;
                 for (Map.Entry<String, Map<String, BigDecimal>> entry : totalBalanceForEachOwnerByBank.entrySet()) {
                     String ownerNames = entry.getKey();
                     Map<String, BigDecimal> balances = entry.getValue();
@@ -85,10 +94,14 @@ public class BalanceSheetMenu extends TextMenu {
                     for (Map.Entry<String, BigDecimal> balanceEntry : balances.entrySet()) {
                         String bankName = balanceEntry.getKey();
                         BigDecimal balance = balanceEntry.getValue();
+                        totalBalance = totalBalance.add(balance);
                         // System.out.println("    " + bankName + ": " + balance);
                         System.out.printf("    %-15s %10.2f%n", bankName, balance);
                     }
                 }
+                String separator = "-".repeat(30);
+                System.out.println(separator);
+                System.out.printf("    %-15s %10.2f%n", "Total balance", totalBalance);
                 break;
 
             case 5:
