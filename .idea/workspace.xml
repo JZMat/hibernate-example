@@ -7,10 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment=" Added a new option to the main menu for viewing balance sheets.">
+    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="Balances for accounts with multiple owners are treated as a separate entity and are not included in the individual owner's balance.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Bank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/BankAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/BankAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Owner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Owner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/BankAccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/BankAccountServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BalanceSheetMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BalanceSheetMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BankMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/OwnerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/OwnerMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,18 +34,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "JZMat"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;JZMat&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/JZMat/hibernate-example",
-    "accountId": "ea92ddda-9767-4f4d-a59b-e880f198c298"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/JZMat/hibernate-example&quot;,
+    &quot;accountId&quot;: &quot;ea92ddda-9767-4f4d-a59b-e880f198c298&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -259,7 +265,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715360418942</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Balances for accounts with multiple owners are treated as a separate entity and are not included in the individual owner's balance.">
+      <option name="closed" value="true" />
+      <created>1715366898560</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1715366898560</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -289,6 +303,7 @@
     <MESSAGE value="Implemented 'com.example.util.StringUtils' class with a generic method 'findLongestStringLength'. This method is used in the 'com.example.ui.BankAccountMenu' class to get 'longestAccountNameLength', 'longestBankNameLength', and 'longestBalanceLength'." />
     <MESSAGE value="The issue has been resolved that the longestOwnersNamesLength can be zero if there are no owners assigned to any bank account. In this case the length is as long as the header name “Owners”. &#10;Math.max has been used for all headers:&#10;Math.max(..., &quot;Account&quot;.length());&#10;Math.max(..., &quot;Bank&quot;.length());" />
     <MESSAGE value=" Added a new option to the main menu for viewing balance sheets." />
-    <option name="LAST_COMMIT_MESSAGE" value=" Added a new option to the main menu for viewing balance sheets." />
+    <MESSAGE value="Balances for accounts with multiple owners are treated as a separate entity and are not included in the individual owner's balance." />
+    <option name="LAST_COMMIT_MESSAGE" value="Balances for accounts with multiple owners are treated as a separate entity and are not included in the individual owner's balance." />
   </component>
 </project>

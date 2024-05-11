@@ -76,7 +76,6 @@ public class BankAccountServiceImpl implements BankAccountService {
         return totalBalanceForEachOwnerByBank;
     }
 
-
     @Override
     public Map<String, BigDecimal> getTotalBalanceForEachOwner() {
         Map<String, BigDecimal> totalBalanceForEachOwner = new HashMap<>();
@@ -89,5 +88,4 @@ public class BankAccountServiceImpl implements BankAccountService {
         }
         return totalBalanceForEachOwner;
     }
-
 }

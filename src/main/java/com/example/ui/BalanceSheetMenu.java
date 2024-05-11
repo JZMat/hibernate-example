@@ -9,6 +9,7 @@ import java.util.Map;
 public class BalanceSheetMenu extends TextMenu {
     private final BankAccountService bankAccountService;
     private boolean returnToMainMenu = false;
+    private BigDecimal totalBalance;
 
     public BalanceSheetMenu(BankAccountService bankAccountService) {
         this.bankAccountService = bankAccountService;
@@ -31,7 +32,7 @@ public class BalanceSheetMenu extends TextMenu {
             case 1:
                 // Code to display total balance of all accounts by owner
                 Map<String, BigDecimal> totalBalanceForEachOwner = bankAccountService.getTotalBalanceForEachOwner();
-                BigDecimal totalBalance = BigDecimal.ZERO;
+                totalBalance = BigDecimal.ZERO;
                 System.out.println("Total balance of all accounts by owner: ");
                 for (Map.Entry<String, BigDecimal> entry : totalBalanceForEachOwner.entrySet()) {
                     String ownerName = entry.getKey();

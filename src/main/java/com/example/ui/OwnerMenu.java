@@ -3,6 +3,7 @@ package com.example.ui;
 import com.example.model.Owner;
 import com.example.service.OwnerService;
 import com.example.util.InputUtils;
+import org.hibernate.exception.ConstraintViolationException;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -60,8 +61,16 @@ public class OwnerMenu extends TextMenu {
     private void createNewOwner() {
         String ownerName = InputUtils.getStringInput("Enter the name of the new owner: ");
         Owner owner = new Owner(ownerName);
-        ownerService.saveOwner(owner);
-        System.out.println("Owner '" + ownerName + "' created successfully!");
+        try {
+            ownerService.saveOwner(owner);
+            System.out.println("Owner '" + ownerName + "' created successfully!");
+        } catch (ConstraintViolationException e) {
+            if (e.getConstraintName().equals("uk78a3vhv1jqi5q2hio5sxmo1uu")) {
+                System.out.println("An owner with this name already exists.");
+            } else {
+                throw e; // rethrow the exception if it's not the one we're expecting
+            }
+        }
     }
 
     // Method to view all owners

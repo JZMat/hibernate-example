@@ -11,6 +11,8 @@ public class Bank {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bank_id;
+
+    @Column(unique = true)
     private String bank_name;
 
     public Bank(String bankName) {

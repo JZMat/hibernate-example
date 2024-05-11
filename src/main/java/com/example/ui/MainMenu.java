@@ -8,8 +8,6 @@ import com.example.service.BankService;
 import com.example.service.OwnerService;
 import com.example.util.InputUtils;
 
-import java.util.InputMismatchException;
-
 // Main menu class
 public class MainMenu extends TextMenu {
     // Instance variable for bank service
