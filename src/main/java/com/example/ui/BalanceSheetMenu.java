@@ -38,10 +38,12 @@ public class BalanceSheetMenu extends TextMenu {
                     String ownerName = entry.getKey();
                     BigDecimal balance = entry.getValue();
                     totalBalance = totalBalance.add(balance);
-                    System.out.println("    " + ownerName + ": " + balance);
+                    // System.out.println("    " + ownerName + ": " + balance);
+                    System.out.printf("    %-15s %10.2f%n", ownerName, balance);
                 }
                 System.out.println("--------------------------------");
-                System.out.println("Total: " + totalBalance);
+                // System.out.println("Total: " + totalBalance);
+                System.out.printf("    %-15s %10.2f%n", "Total", totalBalance);
                 break;
 
             case 2:
@@ -59,7 +61,8 @@ public class BalanceSheetMenu extends TextMenu {
                     for (Map.Entry<String, BigDecimal> balanceEntry : balances.entrySet()) {
                         String accountInfo = balanceEntry.getKey();
                         BigDecimal balance = balanceEntry.getValue();
-                        System.out.println("    " + accountInfo + ": " + balance);
+                        // System.out.println("    " + accountInfo + ": " + balance);
+                        System.out.printf("    %-45s %10.2f%n", accountInfo, balance);
                     }
                 }
                 break;
@@ -83,7 +86,7 @@ public class BalanceSheetMenu extends TextMenu {
                         String bankName = balanceEntry.getKey();
                         BigDecimal balance = balanceEntry.getValue();
                         // System.out.println("    " + bankName + ": " + balance);
-                        System.out.printf("    %-15s: %10.2f%n", bankName, balance);
+                        System.out.printf("    %-15s %10.2f%n", bankName, balance);
                     }
                 }
                 break;
