@@ -7,25 +7,15 @@ import com.example.service.BankAccountService;
 import com.example.service.OwnerService;
 import com.example.service.BankService;
 import com.example.util.InputUtils;
-import com.example.util.StringUtils;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class BankAccountMenu extends TextMenu {
-    private static final String ACCOUNT_HEADER = "Account";
-    private static final String BALANCE_HEADER = "Balance";
-    private static final String BANK_HEADER = "Bank";
-    private static final String OWNERS_HEADER = "Owners";
-    private static final String INDEX_HEADER = "Index";
-    private static final String ENTER_CHOICE_PROMPT = "Enter your choice: ";
-    private static final String NO_BANK_ACCOUNTS_FOUND = "No bank accounts found.";
-    private static final String RETURNING_TO_MAIN_MENU = "Returning to main menu...";
-    private static final String INVALID_CHOICE_PROMPT = "Invalid choice. Please try again.";
-
 
     private final BankAccountService bankAccountService;
     private final OwnerService ownerService;
@@ -44,14 +34,15 @@ public class BankAccountMenu extends TextMenu {
         printOption("1", "Create a new bank account");
         printOption("2", "View all bank accounts");
         printOption("3", "Assign an owner to a bank account");
-        printOption("4", "Deposit funds into an account");
-        printOption("5", "Go back to main menu");
+        printOption("4", "Disconnect an owner from a bank account");
+        printOption("5", "Deposit funds into an account");
+        printOption("6", "Go back to main menu");
     }
 
     @Override
     public void handleUserInput() {
 
-        int choice = InputUtils.getValidatedInput(ENTER_CHOICE_PROMPT, 1, 5);
+        int choice = InputUtils.getValidatedInput(MenuConstants.ENTER_CHOICE_PROMPT, 1, 6);
 
         switch (choice) {
             case 1:
@@ -63,18 +54,98 @@ public class BankAccountMenu extends TextMenu {
             case 3:
                 assignOwnerToBankAccount();
                 break;
+
             case 4:
+                disconnectOwnerFromBankAccount();
+                break;
+
+            case 5:
                 depositFunds();
                 break;
-            case 5:
-                System.out.println(RETURNING_TO_MAIN_MENU);
+            case 6:
+                System.out.println(MenuConstants.RETURNING_TO_MAIN_MENU);
                 returnToMainMenu = true;
                 break;
             default:
-                System.out.println(INVALID_CHOICE_PROMPT);
+                System.out.println(MenuConstants.INVALID_CHOICE_PROMPT);
                 break;
         }
     }
+    private void disconnectOwnerFromBankAccount() {
+        List<BankAccount> bankAccounts = bankAccountService.getAllBankAccounts();
+        if (bankAccounts.isEmpty()) {
+            System.out.println("No bank accounts found. Please create a bank account first.");
+            return;
+        }
+
+        displayFormattedBankAccounts(bankAccounts);
+
+        int accountChoice = InputUtils.getValidatedInput("Choose a bank account by entering its number: ", 1, bankAccounts.size());
+        BankAccount chosenAccount = bankAccounts.get(accountChoice - 1);
+
+        Set<Owner> owners = chosenAccount.getOwners();
+        if (owners.isEmpty()) {
+            System.out.println("No owners found for this account.");
+            return;
+        }
+
+        // Print list of owners
+        System.out.println("List of all owners for this account:");
+        List<Owner> ownersList = new ArrayList<>(owners);
+        for (int i = 0; i < ownersList.size(); i++) {
+            System.out.println((i + 1) + ". " + ownersList.get(i).getOwner_name());
+        }
+
+        int ownerChoice = InputUtils.getValidatedInput("Choose an owner by entering his number: ", 1, ownersList.size());
+        Owner chosenOwner = ownersList.get(ownerChoice - 1);
+
+        // Remove the owner from the bank account
+        chosenAccount.removeOwner(chosenOwner);
+        bankAccountService.updateBankAccount(chosenAccount);
+
+        System.out.println("Owner '" + chosenOwner.getOwner_name() + "' has been disconnected from bank account '" + chosenAccount.getAccount_name() + "'.");
+    }
+
+/*    private void disconnectOwnerFromBankAccount() {
+        List<Owner> owners = ownerService.getAllOwners();
+        if (owners.isEmpty()) {
+            System.out.println("No owners found. Please create an owner first.");
+            return;
+        }
+
+        // Print list of owners
+        System.out.println("List of all owners:");
+        for (int i = 0; i < owners.size(); i++) {
+            System.out.println((i + 1) + ". " + owners.get(i).getOwner_name());
+        }
+
+        int ownerChoice = InputUtils.getValidatedInput("Choose an owner by entering his number: ", 1, owners.size());
+        Owner chosenOwner = owners.get(ownerChoice - 1);
+
+        List<BankAccount> bankAccounts = bankAccountService.getAllBankAccounts();
+        if (bankAccounts.isEmpty()) {
+            System.out.println("No bank accounts found. Please create a bank account first.");
+            return;
+        }
+
+        displayFormattedBankAccounts(bankAccounts);
+
+        int accountChoice = InputUtils.getValidatedInput("Choose a bank account by entering its number: ", 1, bankAccounts.size());
+        BankAccount chosenAccount = bankAccounts.get(accountChoice - 1);
+
+        // Check if the owner is associated with the bank account
+        if (!chosenAccount.getOwners().contains(chosenOwner)) {
+            System.out.println("The chosen owner is not associated with the chosen bank account.");
+            return;
+        }
+
+        // Remove the owner from the bank account
+        chosenAccount.getOwners().remove(chosenOwner);
+        bankAccountService.updateBankAccount(chosenAccount);
+
+        System.out.println("Owner '" + chosenOwner.getOwner_name() + "' has been disconnected from bank account '" + chosenAccount.getAccount_name() + "'.");
+    }*/
+
 
     private void depositFunds() {
 
@@ -130,23 +201,23 @@ public class BankAccountMenu extends TextMenu {
     private void displayFormattedBankAccounts(List<BankAccount> bankAccounts) {
 
         if (bankAccounts.isEmpty()) {
-            System.out.println("No bank accounts found.");
+            System.out.println(MenuConstants.NO_BANK_ACCOUNTS_FOUND);
         } else {
 
             List<String> accountNames = bankAccounts.stream()
                     .map(BankAccount::getAccount_name)
                     .collect(Collectors.toList());
-            int maxAcctNameLen = Math.max(findLongestStringLength(accountNames), ACCOUNT_HEADER.length());
+            int maxAcctNameLen = Math.max(findLongestStringLength(accountNames), MenuConstants.ACCOUNT_HEADER.length());
 
             List<String> bankNames = bankAccounts.stream()
                     .map(bankAccount -> bankAccount.getBank().getBank_name())
                     .collect(Collectors.toList());
-            int maxBankNameLen = Math.max(findLongestStringLength(bankNames), BANK_HEADER.length());
+            int maxBankNameLen = Math.max(findLongestStringLength(bankNames), MenuConstants.BANK_HEADER.length());
 
             List<String> balances = bankAccounts.stream()
                     .map(bankAccount -> bankAccount.getBalance().toString())
                     .collect(Collectors.toList());
-            int maxBalanceLen = Math.max(findLongestStringLength(balances), BALANCE_HEADER.length());
+            int maxBalanceLen = Math.max(findLongestStringLength(balances), MenuConstants.BALANCE_HEADER.length());
 
             List<String> ownersNames = bankAccounts.stream()
                     .map(account -> {
@@ -159,9 +230,9 @@ public class BankAccountMenu extends TextMenu {
                     })
                     .collect(Collectors.toList());
 
-            int maxOwnersNamesLen = Math.max(findLongestStringLength(ownersNames), OWNERS_HEADER.length());
+            int maxOwnersNamesLen = Math.max(findLongestStringLength(ownersNames), MenuConstants.OWNERS_HEADER.length());
 
-            int totalLen = INDEX_HEADER.length() + maxAcctNameLen + maxBalanceLen + maxBankNameLen + maxOwnersNamesLen
+            int totalLen = MenuConstants.INDEX_HEADER.length() + maxAcctNameLen + maxBalanceLen + maxBankNameLen + maxOwnersNamesLen
                     + " | ".length() * 4;
             String separator = "-".repeat(totalLen);
 
@@ -185,22 +256,22 @@ public class BankAccountMenu extends TextMenu {
                 .orElse(0);
     }
 
-    private String formatBankAccountAndHeader(String separator, int index, BankAccount bankAccount, int longestAccountNameLength,
-                                              int longestBalanceLength, int longestBankNameLength, int longestOwnerNameLength) {
-        String accountColumnWidthSpecifier = "%-" + (longestAccountNameLength) + "s";
-        String bankColumnWidthSpecifier = "%-" + (longestBankNameLength) + "s";
-        String balanceColumnWidthSpecifier = "%-" + (longestBalanceLength) + ".2f";
-        String balanceHeaderColumnWidthSpecifier = "%-" + (longestBalanceLength) + "s";
-        String ownersColumnWidthSpecifier = "%-" + (longestOwnerNameLength) + "s\n";
+    private String formatBankAccountAndHeader(String separator, int index, BankAccount bankAccount, int maxAccountNameLen,
+                                              int maxBalanceLen, int maxBankNameLen, int maxOwnerNameLen) {
+        String accountColWidthSpecifier = "%-" + (maxAccountNameLen) + "s";
+        String bankColWidthSpecifier = "%-" + (maxBankNameLen) + "s";
+        String balanceColWidthSpecifier = "%-" + (maxBalanceLen) + ".2f";
+        String balanceHeaderColWidthSpecifier = "%-" + (maxBalanceLen) + "s";
+        String ownersColWidthSpecifier = "%-" + (maxOwnerNameLen) + "s\n";
 
 
         if (index == 1) {
             return String.format("\nList of all bank accounts:\n" +
                             separator + "\n" +
-                            "Index | " + accountColumnWidthSpecifier + " | " + balanceHeaderColumnWidthSpecifier + " | " + bankColumnWidthSpecifier + " | " + ownersColumnWidthSpecifier +
+                            "Index | " + accountColWidthSpecifier + " | " + balanceHeaderColWidthSpecifier + " | " + bankColWidthSpecifier + " | " + ownersColWidthSpecifier +
                             separator + "\n" +
-                            "%-5d | " + accountColumnWidthSpecifier + " | " + balanceColumnWidthSpecifier + " | " + bankColumnWidthSpecifier + " | " + ownersColumnWidthSpecifier,
-                    ACCOUNT_HEADER, BALANCE_HEADER, BANK_HEADER, OWNERS_HEADER,
+                            "%-5d | " + accountColWidthSpecifier + " | " + balanceColWidthSpecifier + " | " + bankColWidthSpecifier + " | " + ownersColWidthSpecifier,
+                    MenuConstants.ACCOUNT_HEADER, MenuConstants.BALANCE_HEADER, MenuConstants.BANK_HEADER, MenuConstants.OWNERS_HEADER,
                     index,
                     bankAccount.getAccount_name(),
                     bankAccount.getBalance(),
@@ -208,7 +279,7 @@ public class BankAccountMenu extends TextMenu {
                     getOwnersAsString(bankAccount.getOwners())) +
                     separator;
         } else {
-            return String.format("%-5d | " + accountColumnWidthSpecifier + " | " + balanceColumnWidthSpecifier + " | " + bankColumnWidthSpecifier + " | " + ownersColumnWidthSpecifier,
+            return String.format("%-5d | " + accountColWidthSpecifier + " | " + balanceColWidthSpecifier + " | " + bankColWidthSpecifier + " | " + ownersColWidthSpecifier,
                     index,
                     bankAccount.getAccount_name(),
                     bankAccount.getBalance(),

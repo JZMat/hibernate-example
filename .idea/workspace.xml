@@ -7,9 +7,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="Updated the balance display in the Balance Sheet Menu to align decimal digits in the same column. This was achieved by using the String.format() method to control the width of the printed fields. The account information is now left-justified and the balance is right-justified, which makes the output more readable and professional.">
+    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="Updated the Balance Sheet Menu to include the total balance after printing the report for option 4. This was achieved by adding up the balances of each account, and then printing the total balance at the end.">
+      <change afterPath="$PROJECT_DIR$/BalanceSheetReport.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/MenuConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/BankAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/BankAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BalanceSheetMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BalanceSheetMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +70,11 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="com.example.ui.MenuConstants" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Application">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.Application" />
@@ -306,7 +316,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715436831305</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Updated the Balance Sheet Menu to include the total balance after printing the report for option 4. This was achieved by adding up the balances of each account, and then printing the total balance at the end.">
+      <option name="closed" value="true" />
+      <created>1715438865130</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1715438865130</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -342,6 +360,7 @@
     <MESSAGE value="Some small changes to get code more readable." />
     <MESSAGE value="findLongestStringLength helper method that calculates the maximum length of a list of strings was created. This method takes a list of strings as input and return the length of the longest string. This method can then be used to calculate the maximum length of each column in displayFormattedBankAccounts method." />
     <MESSAGE value="Updated the balance display in the Balance Sheet Menu to align decimal digits in the same column. This was achieved by using the String.format() method to control the width of the printed fields. The account information is now left-justified and the balance is right-justified, which makes the output more readable and professional." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated the balance display in the Balance Sheet Menu to align decimal digits in the same column. This was achieved by using the String.format() method to control the width of the printed fields. The account information is now left-justified and the balance is right-justified, which makes the output more readable and professional." />
+    <MESSAGE value="Updated the Balance Sheet Menu to include the total balance after printing the report for option 4. This was achieved by adding up the balances of each account, and then printing the total balance at the end." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the Balance Sheet Menu to include the total balance after printing the report for option 4. This was achieved by adding up the balances of each account, and then printing the total balance at the end." />
   </component>
 </project>

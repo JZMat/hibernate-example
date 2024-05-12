@@ -48,5 +48,9 @@ BankAccount {
 
         this.owners.add(owner);
     }
+
+    public void removeOwner(Owner owner) {
+        this.owners.remove(owner);
+    }
 }
 

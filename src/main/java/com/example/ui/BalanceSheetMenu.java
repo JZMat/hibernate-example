@@ -3,8 +3,17 @@ package com.example.ui;
 import com.example.service.BankAccountService;
 import com.example.util.InputUtils;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class BalanceSheetMenu extends TextMenu {
     private final BankAccountService bankAccountService;
@@ -23,11 +32,12 @@ public class BalanceSheetMenu extends TextMenu {
         printOption("3", "View total balance");
         printOption("4", "View balance for each owner by bank");
         printOption("5", "Go back to main menu");
+        printOption("6", "Create PDF");
     }
 
     @Override
     public void handleUserInput() {
-        int choice = InputUtils.getValidatedInput("Enter your choice: ", 1, 5);
+        int choice = InputUtils.getValidatedInput("Enter your choice: ", 1, 6);
         switch (choice) {
             case 1:
                 // Code to display total balance of all accounts by owner
@@ -105,14 +115,82 @@ public class BalanceSheetMenu extends TextMenu {
                 break;
 
             case 5:
-                System.out.println("Returning to main menu...");
+                System.out.println(MenuConstants.RETURNING_TO_MAIN_MENU);
                 returnToMainMenu = true;
                 return;
+
+
+            case 6:
+                generatePdfReport();
+                break;
+
+
             default:
                 System.out.println("Invalid choice. Please try again.");
                 break;
         }
     }
+
+    public void generatePdfReport() {
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream("BalanceSheetReport.pdf"));
+            document.open();
+
+            PdfPTable table = new PdfPTable(4); // 4 columns: Owner, Bank, Account, Balance
+            //PdfPCell cell;
+
+            // Add headers
+            Stream.of("Owner", "Bank", "Account", "Balance")
+                    .forEach(header -> {
+                        PdfPCell cell = new PdfPCell(new Phrase(header));
+                        table.addCell(cell);
+                    });
+
+
+
+            Map<String, Map<String, BigDecimal>> totalBalanceForEachOwnerByBank = bankAccountService.getTotalBalanceForEachOwnerByBank();
+            BigDecimal totalBalance = BigDecimal.ZERO;
+
+            for (Map.Entry<String, Map<String, BigDecimal>> entry : totalBalanceForEachOwnerByBank.entrySet()) {
+                String ownerNames = entry.getKey();
+                Map<String, BigDecimal> balances = entry.getValue();
+
+                for (Map.Entry<String, BigDecimal> balanceEntry : balances.entrySet()) {
+                    String accountInfo = balanceEntry.getKey();
+                    BigDecimal balance = balanceEntry.getValue();
+                    totalBalance = totalBalance.add(balance);
+
+                    // Split the accountInfo into bankName and accountName
+                    String[] parts = accountInfo.split(" - ", 2);
+                    String bankName = parts[0];
+                    String accountName = parts.length > 1 ? parts[1] : "";
+
+                    // Add cells for the ownerNames, bankName, accountName, and balance
+                    table.addCell(new Phrase(ownerNames));
+                    table.addCell(new Phrase(bankName));
+                    table.addCell(new Phrase(accountName));
+                    table.addCell(new Phrase(balance.toString()));
+                }
+            }
+
+
+
+            // Add empty cells for the "Owner" and "Bank" columns
+            table.addCell("");
+            table.addCell("");
+            table.addCell("Total");
+            table.addCell(new Phrase(totalBalance.toString()));
+            // Add total balance
+  /*          Paragraph totalBalanceParagraph = new Paragraph("Total balance: " + totalBalance);
+            document.add(totalBalanceParagraph);*/
+            document.add(table);
+            document.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void run() {
         while (!returnToMainMenu) { // Continue until flag is true
