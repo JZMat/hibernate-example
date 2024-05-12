@@ -7,13 +7,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="Updated the Balance Sheet Menu to include the total balance after printing the report for option 4. This was achieved by adding up the balances of each account, and then printing the total balance at the end.">
-      <change afterPath="$PROJECT_DIR$/BalanceSheetReport.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/MenuConstants.java" afterDir="false" />
+    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="Summary: &#10;&#10;1) Implement disconnect owner from bank account feature.&#10;&#10;Details:&#10;- Added a new option in the 'Bank Account Management Menu' to disconnect an owner from a bank account.&#10;- Created a new method `disconnectOwnerFromBankAccount()` in `BankAccountMenu` class to handle the disconnection.&#10;- Modified `handleUserInput()` method in `BankAccountMenu` class to handle the new menu option.&#10;- Added a new method `removeOwner()` in `BankAccount` class to remove an owner from the owners set.&#10;&#10;2) Add 'Create PDF' option to 'Balance Sheet Menu' &#10;&#10;Details:&#10;- Added a new option in the 'Balance Sheet Menu' for creating a PDF version of the balance sheet.&#10;- Implemented a new method `createPDF()` in `BalanceSheetMenu` class to handle the PDF creation.&#10;- Modified `handleUserInput()` method in `BalanceSheetMenu` class to handle the new menu option.&#10;- Utilized a PDF library iText for generating the PDF.&#10;- The new feature allows users to generate a PDF of the balance sheet directly from the menu..">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/BankAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/BankAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BalanceSheetMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BalanceSheetMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -324,7 +319,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715438865130</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Summary: &#10;&#10;1) Implement disconnect owner from bank account feature.&#10;&#10;Details:&#10;- Added a new option in the 'Bank Account Management Menu' to disconnect an owner from a bank account.&#10;- Created a new method `disconnectOwnerFromBankAccount()` in `BankAccountMenu` class to handle the disconnection.&#10;- Modified `handleUserInput()` method in `BankAccountMenu` class to handle the new menu option.&#10;- Added a new method `removeOwner()` in `BankAccount` class to remove an owner from the owners set.&#10;&#10;2) Add 'Create PDF' option to 'Balance Sheet Menu' &#10;&#10;Details:&#10;- Added a new option in the 'Balance Sheet Menu' for creating a PDF version of the balance sheet.&#10;- Implemented a new method `createPDF()` in `BalanceSheetMenu` class to handle the PDF creation.&#10;- Modified `handleUserInput()` method in `BalanceSheetMenu` class to handle the new menu option.&#10;- Utilized a PDF library iText for generating the PDF.&#10;- The new feature allows users to generate a PDF of the balance sheet directly from the menu..">
+      <option name="closed" value="true" />
+      <created>1715516279861</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1715516279861</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -361,6 +364,7 @@
     <MESSAGE value="findLongestStringLength helper method that calculates the maximum length of a list of strings was created. This method takes a list of strings as input and return the length of the longest string. This method can then be used to calculate the maximum length of each column in displayFormattedBankAccounts method." />
     <MESSAGE value="Updated the balance display in the Balance Sheet Menu to align decimal digits in the same column. This was achieved by using the String.format() method to control the width of the printed fields. The account information is now left-justified and the balance is right-justified, which makes the output more readable and professional." />
     <MESSAGE value="Updated the Balance Sheet Menu to include the total balance after printing the report for option 4. This was achieved by adding up the balances of each account, and then printing the total balance at the end." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated the Balance Sheet Menu to include the total balance after printing the report for option 4. This was achieved by adding up the balances of each account, and then printing the total balance at the end." />
+    <MESSAGE value="Summary: &#10;&#10;1) Implement disconnect owner from bank account feature.&#10;&#10;Details:&#10;- Added a new option in the 'Bank Account Management Menu' to disconnect an owner from a bank account.&#10;- Created a new method `disconnectOwnerFromBankAccount()` in `BankAccountMenu` class to handle the disconnection.&#10;- Modified `handleUserInput()` method in `BankAccountMenu` class to handle the new menu option.&#10;- Added a new method `removeOwner()` in `BankAccount` class to remove an owner from the owners set.&#10;&#10;2) Add 'Create PDF' option to 'Balance Sheet Menu' &#10;&#10;Details:&#10;- Added a new option in the 'Balance Sheet Menu' for creating a PDF version of the balance sheet.&#10;- Implemented a new method `createPDF()` in `BalanceSheetMenu` class to handle the PDF creation.&#10;- Modified `handleUserInput()` method in `BalanceSheetMenu` class to handle the new menu option.&#10;- Utilized a PDF library iText for generating the PDF.&#10;- The new feature allows users to generate a PDF of the balance sheet directly from the menu.." />
+    <option name="LAST_COMMIT_MESSAGE" value="Summary: &#10;&#10;1) Implement disconnect owner from bank account feature.&#10;&#10;Details:&#10;- Added a new option in the 'Bank Account Management Menu' to disconnect an owner from a bank account.&#10;- Created a new method `disconnectOwnerFromBankAccount()` in `BankAccountMenu` class to handle the disconnection.&#10;- Modified `handleUserInput()` method in `BankAccountMenu` class to handle the new menu option.&#10;- Added a new method `removeOwner()` in `BankAccount` class to remove an owner from the owners set.&#10;&#10;2) Add 'Create PDF' option to 'Balance Sheet Menu' &#10;&#10;Details:&#10;- Added a new option in the 'Balance Sheet Menu' for creating a PDF version of the balance sheet.&#10;- Implemented a new method `createPDF()` in `BalanceSheetMenu` class to handle the PDF creation.&#10;- Modified `handleUserInput()` method in `BalanceSheetMenu` class to handle the new menu option.&#10;- Utilized a PDF library iText for generating the PDF.&#10;- The new feature allows users to generate a PDF of the balance sheet directly from the menu.." />
   </component>
 </project>

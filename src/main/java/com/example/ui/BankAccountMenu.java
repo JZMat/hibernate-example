@@ -36,7 +36,8 @@ public class BankAccountMenu extends TextMenu {
         printOption("3", "Assign an owner to a bank account");
         printOption("4", "Disconnect an owner from a bank account");
         printOption("5", "Deposit funds into an account");
-        printOption("6", "Go back to main menu");
+        printOption("6", "Transfer money between accounts");
+        printOption("7", "Go back to main menu");
     }
 
     @Override
@@ -63,6 +64,9 @@ public class BankAccountMenu extends TextMenu {
                 depositFunds();
                 break;
             case 6:
+                transferMoneyBetweenAccounts();
+                break;
+            case 7:
                 System.out.println(MenuConstants.RETURNING_TO_MAIN_MENU);
                 returnToMainMenu = true;
                 break;
@@ -71,6 +75,39 @@ public class BankAccountMenu extends TextMenu {
                 break;
         }
     }
+
+    private void transferMoneyBetweenAccounts() {
+        List<BankAccount> bankAccounts = bankAccountService.getAllBankAccounts();
+        if (bankAccounts.isEmpty()) {
+            System.out.println("No bank accounts found. Please create a bank account first.");
+            return;
+        }
+
+        displayFormattedBankAccounts(bankAccounts);
+
+        int sourceAccountChoice = InputUtils.getValidatedInput("Choose the source account by entering its number: ", 1, bankAccounts.size());
+        BankAccount sourceAccount = bankAccounts.get(sourceAccountChoice - 1); // Adjust for 0-based indexing
+
+        int destinationAccountChoice = InputUtils.getValidatedInput("Choose the destination account by entering its number: ", 1, bankAccounts.size());
+        BankAccount destinationAccount = bankAccounts.get(destinationAccountChoice - 1); // Adjust for 0-based indexing
+
+        BigDecimal amount = InputUtils.getBigDecimalInput("Enter the amount to transfer: ");
+
+        if (sourceAccount.getBalance().compareTo(amount) < 0) {
+            System.out.println("Insufficient balance in source account.");
+            return;
+        }
+
+        sourceAccount.setBalance(sourceAccount.getBalance().subtract(amount));
+        destinationAccount.setBalance(destinationAccount.getBalance().add(amount));
+
+        bankAccountService.updateBankAccount(sourceAccount);
+        bankAccountService.updateBankAccount(destinationAccount);
+
+        System.out.println("Transfer successful!");
+    }
+
+
     private void disconnectOwnerFromBankAccount() {
         List<BankAccount> bankAccounts = bankAccountService.getAllBankAccounts();
         if (bankAccounts.isEmpty()) {
