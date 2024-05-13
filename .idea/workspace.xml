@@ -7,9 +7,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="Summary: &#10;&#10;1) Implement disconnect owner from bank account feature.&#10;&#10;Details:&#10;- Added a new option in the 'Bank Account Management Menu' to disconnect an owner from a bank account.&#10;- Created a new method `disconnectOwnerFromBankAccount()` in `BankAccountMenu` class to handle the disconnection.&#10;- Modified `handleUserInput()` method in `BankAccountMenu` class to handle the new menu option.&#10;- Added a new method `removeOwner()` in `BankAccount` class to remove an owner from the owners set.&#10;&#10;2) Add 'Create PDF' option to 'Balance Sheet Menu' &#10;&#10;Details:&#10;- Added a new option in the 'Balance Sheet Menu' for creating a PDF version of the balance sheet.&#10;- Implemented a new method `createPDF()` in `BalanceSheetMenu` class to handle the PDF creation.&#10;- Modified `handleUserInput()` method in `BalanceSheetMenu` class to handle the new menu option.&#10;- Utilized a PDF library iText for generating the PDF.&#10;- The new feature allows users to generate a PDF of the balance sheet directly from the menu..">
+    <list default="true" id="40d501b5-6627-4245-a69c-ff039073fe83" name="Changes" comment="Add option to transfer money between accounts&#10;&#10;Updated the BankAccountMenu to include an option for transferring money between accounts. This was achieved by adding a new menu option in the displayMenu method and handling the option in the handleUserInput method. A new method, transferMoneyBetweenAccounts, was implemented to ask the user for the necessary information, perform the transfer, and save the updated account balances using the BankAccountService.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Transaction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/TransactionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/TransactionRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/TransactionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/TransactionServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/TransactionHistoryMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/BankAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/BankAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/BankAccountMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ui/MenuConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ui/MenuConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +78,11 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.repository" />
+    </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="com.example.ui.BankAccountUtils" />
       <recent name="com.example.ui.MenuConstants" />
     </key>
   </component>
@@ -327,7 +343,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715516279861</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Add option to transfer money between accounts&#10;&#10;Updated the BankAccountMenu to include an option for transferring money between accounts. This was achieved by adding a new menu option in the displayMenu method and handling the option in the handleUserInput method. A new method, transferMoneyBetweenAccounts, was implemented to ask the user for the necessary information, perform the transfer, and save the updated account balances using the BankAccountService.">
+      <option name="closed" value="true" />
+      <created>1715517691682</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1715517691682</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -365,6 +389,7 @@
     <MESSAGE value="Updated the balance display in the Balance Sheet Menu to align decimal digits in the same column. This was achieved by using the String.format() method to control the width of the printed fields. The account information is now left-justified and the balance is right-justified, which makes the output more readable and professional." />
     <MESSAGE value="Updated the Balance Sheet Menu to include the total balance after printing the report for option 4. This was achieved by adding up the balances of each account, and then printing the total balance at the end." />
     <MESSAGE value="Summary: &#10;&#10;1) Implement disconnect owner from bank account feature.&#10;&#10;Details:&#10;- Added a new option in the 'Bank Account Management Menu' to disconnect an owner from a bank account.&#10;- Created a new method `disconnectOwnerFromBankAccount()` in `BankAccountMenu` class to handle the disconnection.&#10;- Modified `handleUserInput()` method in `BankAccountMenu` class to handle the new menu option.&#10;- Added a new method `removeOwner()` in `BankAccount` class to remove an owner from the owners set.&#10;&#10;2) Add 'Create PDF' option to 'Balance Sheet Menu' &#10;&#10;Details:&#10;- Added a new option in the 'Balance Sheet Menu' for creating a PDF version of the balance sheet.&#10;- Implemented a new method `createPDF()` in `BalanceSheetMenu` class to handle the PDF creation.&#10;- Modified `handleUserInput()` method in `BalanceSheetMenu` class to handle the new menu option.&#10;- Utilized a PDF library iText for generating the PDF.&#10;- The new feature allows users to generate a PDF of the balance sheet directly from the menu.." />
-    <option name="LAST_COMMIT_MESSAGE" value="Summary: &#10;&#10;1) Implement disconnect owner from bank account feature.&#10;&#10;Details:&#10;- Added a new option in the 'Bank Account Management Menu' to disconnect an owner from a bank account.&#10;- Created a new method `disconnectOwnerFromBankAccount()` in `BankAccountMenu` class to handle the disconnection.&#10;- Modified `handleUserInput()` method in `BankAccountMenu` class to handle the new menu option.&#10;- Added a new method `removeOwner()` in `BankAccount` class to remove an owner from the owners set.&#10;&#10;2) Add 'Create PDF' option to 'Balance Sheet Menu' &#10;&#10;Details:&#10;- Added a new option in the 'Balance Sheet Menu' for creating a PDF version of the balance sheet.&#10;- Implemented a new method `createPDF()` in `BalanceSheetMenu` class to handle the PDF creation.&#10;- Modified `handleUserInput()` method in `BalanceSheetMenu` class to handle the new menu option.&#10;- Utilized a PDF library iText for generating the PDF.&#10;- The new feature allows users to generate a PDF of the balance sheet directly from the menu.." />
+    <MESSAGE value="Add option to transfer money between accounts&#10;&#10;Updated the BankAccountMenu to include an option for transferring money between accounts. This was achieved by adding a new menu option in the displayMenu method and handling the option in the handleUserInput method. A new method, transferMoneyBetweenAccounts, was implemented to ask the user for the necessary information, perform the transfer, and save the updated account balances using the BankAccountService." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add option to transfer money between accounts&#10;&#10;Updated the BankAccountMenu to include an option for transferring money between accounts. This was achieved by adding a new menu option in the displayMenu method and handling the option in the handleUserInput method. A new method, transferMoneyBetweenAccounts, was implemented to ask the user for the necessary information, perform the transfer, and save the updated account balances using the BankAccountService." />
   </component>
 </project>

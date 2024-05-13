@@ -28,8 +28,13 @@ public class Application {
         //Create BankAccountService instance
         BankAccountService bankAccountService = new BankAccountServiceImpl(bankAccountRepository);
 
-        // Create and run the main menu with the BankService instance and OwnerService instance
-        MainMenu mainMenu = new MainMenu(bankService, ownerService, bankAccountService);
+        // Create TransactionRepository instance
+        TransactionRepository transactionRepository = new TransactionRepositoryImpl(sessionFactory);
+        // Create TransactionService instance
+        TransactionService transactionService = new TransactionServiceImpl(transactionRepository, bankAccountRepository);
+
+        // Create and run the main menu with the BankService instance, OwnerService instance ...
+        MainMenu mainMenu = new MainMenu(bankService, ownerService, bankAccountService, transactionService);
         mainMenu.run();
     }
 }

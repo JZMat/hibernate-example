@@ -6,6 +6,7 @@ package com.example.ui;
 import com.example.service.BankAccountService;
 import com.example.service.BankService;
 import com.example.service.OwnerService;
+import com.example.service.TransactionService;
 import com.example.util.InputUtils;
 
 // Main menu class
@@ -14,14 +15,16 @@ public class MainMenu extends TextMenu {
     private final BankService bankService;
     private final OwnerService ownerService;
     private final BankAccountService bankAccountService;
+    private final TransactionService transactionService;
     private boolean exitRequested = false;
 
     // Constructor
-    public MainMenu(BankService bankService, OwnerService ownerService, BankAccountService bankAccountService) {
+    public MainMenu(BankService bankService, OwnerService ownerService, BankAccountService bankAccountService, TransactionService transactionService) {
 
         this.bankService = bankService;
         this.ownerService = ownerService;
         this.bankAccountService = bankAccountService;
+        this.transactionService = transactionService;
     }
 
     // Override method to display the main menu
@@ -33,7 +36,8 @@ public class MainMenu extends TextMenu {
         printOption("3", "Bank Account Management");
         printOption("4", "Deposit Management");
         printOption("5", "View Balance Sheets");
-        printOption("6", "Exit");
+        printOption("6", "Transaction History");
+        printOption("7", "Exit");
 
     }
 
@@ -41,7 +45,7 @@ public class MainMenu extends TextMenu {
     @Override
     public void handleUserInput() {
 
-        int choice = InputUtils.getValidatedInput("Enter your choice: ", 1, 6);
+        int choice = InputUtils.getValidatedInput("Enter your choice: ", 1, 7);
         switch (choice) {
             case 1:
                 // Code to navigate to BankMenu
@@ -55,7 +59,7 @@ public class MainMenu extends TextMenu {
                 break;
             case 3:
                 // Code to navigate to BankAccountMenu
-                BankAccountMenu bankAccountMenu = new BankAccountMenu(bankAccountService, ownerService, bankService);
+                BankAccountMenu bankAccountMenu = new BankAccountMenu(bankAccountService, ownerService, bankService, transactionService);
                 bankAccountMenu.run();
                 break;
             case 4:
@@ -68,6 +72,11 @@ public class MainMenu extends TextMenu {
                 balanceSheetMenu.run();
                 break;
             case 6:
+                // Code to navigate to TransactionHistoryMenu
+                TransactionHistoryMenu transactionHistoryMenu = new TransactionHistoryMenu(transactionService);
+                transactionHistoryMenu.run();
+                break;
+            case 7:
                 System.out.println("Exiting...");
                 exitRequested = true; // Set exit flag
                 return; // Return from the method

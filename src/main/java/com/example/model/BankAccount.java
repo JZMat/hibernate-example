@@ -1,13 +1,6 @@
 package com.example.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,8 +11,7 @@ import java.util.Set;
 @Entity
 @Data
 @NoArgsConstructor
-public class
-BankAccount {
+public class BankAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int account_id;
@@ -38,6 +30,12 @@ BankAccount {
     )
     private Set<Owner> owners = new HashSet<>();
 
+    @OneToMany(mappedBy = "sourceAccount")
+    private Set<Transaction> sourceTransactions = new HashSet<>();
+
+    @OneToMany(mappedBy = "destinationAccount")
+    private Set<Transaction> destinationTransactions = new HashSet<>();
+
     public BankAccount(String account_name, BigDecimal balance, Bank bank) {
         this.account_name = account_name;
         this.balance = balance;
@@ -45,12 +43,14 @@ BankAccount {
     }
 
     public void addOwner(Owner owner) {
-
         this.owners.add(owner);
     }
 
     public void removeOwner(Owner owner) {
         this.owners.remove(owner);
     }
-}
 
+    public int getAccountId() {
+        return account_id;
+    }
+}

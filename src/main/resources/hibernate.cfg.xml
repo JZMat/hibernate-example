@@ -28,6 +28,7 @@
         <mapping class="com.example.model.Bank"/>
         <mapping class="com.example.model.Owner"/>
         <mapping class="com.example.model.BankAccount"/>
+        <mapping class="com.example.model.Transaction"/>
 
     </session-factory>
 </hibernate-configuration>
